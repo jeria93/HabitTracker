@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct HabitTrackerApp: App {
@@ -13,5 +14,17 @@ struct HabitTrackerApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Habit.self)
     }
 }
+
+/*
+ feat: integration(SwiftData) and folder structure MVVM
+ 
+ - Added Auth + Firestore support
+ - Organized project into MVVM-style folders
+ 
+ 
+ 
+ 
+ */
