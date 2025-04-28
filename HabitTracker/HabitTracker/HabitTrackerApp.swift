@@ -12,19 +12,8 @@ import SwiftData
 struct HabitTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HabitListView()
         }
         .modelContainer(for: Habit.self)
     }
 }
-
-/*
- feat: integration(SwiftData) and folder structure MVVM
- 
- - Added Auth + Firestore support
- - Organized project into MVVM-style folders
- 
- 
- 
- 
- */
