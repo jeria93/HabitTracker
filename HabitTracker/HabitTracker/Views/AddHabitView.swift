@@ -6,13 +6,38 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddHabitView: View {
+    
+    @Environment(\.modelContext) var context
+    @Environment(\.dismiss) var dismiss
+    @State var name: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+       
+        Form {
+            Section {
+                TextField("Start a new habit", text: $name)
+            } header: {
+                Text("New habits")
+            }
+            
+            Button("Save") {
+                let newHabit = Habit(name: name)
+                context.insert(newHabit)
+                try? context.save()
+                dismiss()
+            }
+            .disabled(name.isEmpty)
+
+        }
+        .navigationTitle("Add Habit")
     }
 }
 
 #Preview {
-    AddHabitView()
+    NavigationStack {
+        AddHabitView(name: "Must go to the bank")
+    }
 }
