@@ -31,20 +31,6 @@ struct HabitListView: View {
         }
     }
     
-    func markHabitAsDone(_ habit: Habit) {
-        let today = Calendar.current.startOfDay(for: Date())
-        
-        if let lastDate = habit.lastCompleted {
-            let lastCompletedDay = Calendar.current.startOfDay(for: lastDate)
-            if today == lastCompletedDay {
-                return
-            } else if Calendar.current.isDate(today, inSameDayAs: lastCompletedDay).addingTimeInterval(86400)) {
-                habit.streak += 1
-            } else {
-                habit.streak = 1
-            }
-        }
-    }
 }
 
 #Preview {
@@ -52,9 +38,3 @@ struct HabitListView: View {
         HabitListView()
     }
 }
-
-/*
- 
-2. Lista av vanor (HabitListView)
- 
- */

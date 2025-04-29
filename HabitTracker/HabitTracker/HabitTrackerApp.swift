@@ -12,7 +12,7 @@ import SwiftData
 struct HabitTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            HabitListView()
+           HabitListView()
         }
         .modelContainer(for: Habit.self)
     }
