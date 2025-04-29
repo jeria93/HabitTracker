@@ -14,7 +14,7 @@
 		03B47A332DC0230600F3A663 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B47A322DC0230600F3A663 /* AddHabitView.swift */; };
 		03B47A362DC0BB8600F3A663 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B47A352DC0BB8600F3A663 /* TimeManager.swift */; };
 		03B47A382DC0BD3E00F3A663 /* HabitListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B47A372DC0BD3E00F3A663 /* HabitListViewModel.swift */; };
-		03B47A3B2DC0D40B00F3A663 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B47A3A2DC0D40B00F3A663 /* PreviewData.swift */; };
+		03B47A3B2DC0D40B00F3A663 /* PreviewDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B47A3A2DC0D40B00F3A663 /* PreviewDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +26,7 @@
 		03B47A322DC0230600F3A663 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		03B47A352DC0BB8600F3A663 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		03B47A372DC0BD3E00F3A663 /* HabitListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListViewModel.swift; sourceTree = "<group>"; };
-		03B47A3A2DC0D40B00F3A663 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
+		03B47A3A2DC0D40B00F3A663 /* PreviewDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,7 @@
 		03B47A392DC0D3F700F3A663 /* PreviewData */ = {
 			isa = PBXGroup;
 			children = (
-				03B47A3A2DC0D40B00F3A663 /* PreviewData.swift */,
+				03B47A3A2DC0D40B00F3A663 /* PreviewDataProvider.swift */,
 			);
 			path = PreviewData;
 			sourceTree = "<group>";
@@ -195,7 +195,7 @@
 				03B47A332DC0230600F3A663 /* AddHabitView.swift in Sources */,
 				03A223122DC00580006C6D01 /* HabitListView.swift in Sources */,
 				03B47A382DC0BD3E00F3A663 /* HabitListViewModel.swift in Sources */,
-				03B47A3B2DC0D40B00F3A663 /* PreviewData.swift in Sources */,
+				03B47A3B2DC0D40B00F3A663 /* PreviewDataProvider.swift in Sources */,
 				03B47A362DC0BB8600F3A663 /* TimeManager.swift in Sources */,
 				03A223132DC00580006C6D01 /* HabitTrackerApp.swift in Sources */,
 			);

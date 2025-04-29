@@ -1,5 +1,5 @@
 //
-//  PreviewData.swift
+//  PreviewDataProvider.swift
 //  HabitTracker
 //
 //  Created by Nicholas Samuelsson Jeria on 2025-04-29.
@@ -9,10 +9,22 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-struct PreviewData {
+@MainActor
+final class PreviewDataProvider {
     
-    static var habits: [Habit] {
-        [
+    let container: ModelContainer
+    
+    init() {
+        do {
+            container = try ModelContainer(for: Habit.self, configurations: .init(isStoredInMemoryOnly: true))
+            addMockHabits()
+        } catch {
+            fatalError("Failde to create preview container/data: \(error)")
+        }
+    }
+    
+    private func addMockHabits() {
+        let habits =   [
             Habit(name: "Swim"),
             Habit(name: "Drink Water"),
             Habit(name: "Read 10 pages"),
@@ -22,17 +34,16 @@ struct PreviewData {
             Habit(name: "Cook dinner"),
             Habit(name: "Walk the dog")
         ]
-    }
-    @MainActor
-    static var previewContainer: ModelContainer {
-        let container = try! ModelContainer(for: Habit.self, configurations: .init(isStoredInMemoryOnly: true))
         
         for habit in habits {
             container.mainContext.insert(habit)
         }
-        
-        return container
     }
     
+    static var empty: ModelContainer {
+        let provider = PreviewDataProvider()
+        return provider.container
+    }
     
 }
+

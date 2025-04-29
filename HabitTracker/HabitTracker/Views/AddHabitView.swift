@@ -12,6 +12,7 @@ struct AddHabitView: View {
     
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var viewModel: HabitListViewModel
     @State var name: String
     
     var body: some View {
@@ -24,9 +25,7 @@ struct AddHabitView: View {
             }
             
             Button("Save") {
-                let newHabit = Habit(name: name)
-                context.insert(newHabit)
-                try? context.save()
+                viewModel.addHabit(name: name, context: context)
                 dismiss()
             }
             .disabled(name.isEmpty)
@@ -36,8 +35,7 @@ struct AddHabitView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        AddHabitView(name: "Must go to the bank")
-    }
-}
+//#Preview {
+//   AddHabitView(viewModel: <#T##HabitListViewModel#>, name: <#T##String#>)
+//}
+//

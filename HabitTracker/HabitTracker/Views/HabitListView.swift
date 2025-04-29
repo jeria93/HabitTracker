@@ -10,15 +10,14 @@ import SwiftData
 
 struct HabitListView: View {
     
-    @Query var habits: [Habit]
-    @Environment(\.modelContext) var context
+    @Environment(\.modelContext) var modelContext
     @StateObject var viewmodel = HabitListViewModel()
     
     var body: some View {
         NavigationStack {
             
             List {
-                ForEach(habits) { habit in
+                ForEach(viewmodel.habits) { habit in
                     HStack {
                         VStack(alignment: .leading) {
                             Text(habit.name)
@@ -28,19 +27,44 @@ struct HabitListView: View {
                                 .font(.subheadline)
                                 .foregroundStyle(.gray)
                         }
+                        Spacer()
+                        Button {
+                            
+                            viewmodel.markHabitAsDone(habit: habit, context: modelContext)
+                        } label: {
+                            Image(systemName: "checkmark.circle")
+                        }
+                    }
+                }
+                .onDelete { IndexSet in
+                    IndexSet.forEach { index in
+                        let habit = viewmodel.habits[index]
+                        viewmodel.deleteHabit(habit: habit, context: modelContext)
                     }
                 }
                 
             }
-
+            .navigationTitle("Habits")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: AddHabitView(viewModel: viewmodel, name: "test")) {
+                        Image(systemName: "plus")
+                    }
+                }
+                
+            }
+            .onAppear {
+                viewmodel.fetchHabits(context: modelContext)
+            }
         }
     }
     
 }
 
 #Preview {
-    NavigationStack {
+    let provider = PreviewDataProvider()
+    return NavigationStack {
         HabitListView()
-            .modelContainer(PreviewData.previewContainer)
+            .modelContainer(provider.container)
     }
 }
