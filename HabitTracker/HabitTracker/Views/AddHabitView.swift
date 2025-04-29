@@ -13,29 +13,40 @@ struct AddHabitView: View {
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: HabitListViewModel
-    @State var name: String
     
     var body: some View {
        
         Form {
             Section {
-                TextField("Start a new habit", text: $name)
+                TextField("Start a new habit", text: $viewModel.name)
             } header: {
                 Text("New habits")
             }
             
             Button("Save") {
-                viewModel.addHabit(name: name, context: context)
+                viewModel.addHabit(name: viewModel.name, context: context)
                 dismiss()
             }
-            .disabled(name.isEmpty)
+            .disabled(viewModel.name.isEmpty)
 
         }
         .navigationTitle("Add Habit")
     }
 }
 
+#Preview {
+    let provider = PreviewDataProvider()
+    NavigationStack {
+        AddHabitView(viewModel: HabitListViewModel())
+            .modelContainer(provider.container)
+    }
+}
+
+
+
 //#Preview {
-//   AddHabitView(viewModel: <#T##HabitListViewModel#>, name: <#T##String#>)
-//}
-//
+//    let provider = PreviewDataProvider()
+//    return NavigationStack {
+//        HabitListView()
+//            .modelContainer(provider.container)
+//    }

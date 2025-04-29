@@ -13,7 +13,10 @@ final class HabitListViewModel: ObservableObject {
     @Published var habits: [Habit] = []
     @Published var errorMessage: String?
     
-    // CREATE
+    //PROPERTIES
+    @Published var name: String = ""
+    
+    // MARK: - CRUD OPERATIONS
     func addHabit(name: String, context: ModelContext) {
         let newHabit = Habit(name: name)
         context.insert(newHabit)
@@ -32,21 +35,16 @@ final class HabitListViewModel: ObservableObject {
         try? context.save()
     }
     
-    // DELETE
+    // MARK: - Delete
     func deleteHabit(habit: Habit, context: ModelContext) {
         context.delete(habit)
         try? context.save()
         fetchHabits(context: context)
     }
-}
-
-extension HabitListViewModel {
-    static var previews: HabitListViewModel = {
-        
-        let viewModel = HabitListViewModel()
-        let context = PreviewDataProvider().container.mainContext
-        viewModel.fetchHabits(context: context)
-        return viewModel
-        
-    }()
+    
+    func delete(at offsets: IndexSet, context: ModelContext) {
+        offsets.map { habits[$0] }.forEach { habit in
+            deleteHabit(habit: habit, context: context)
+        }
+    }
 }

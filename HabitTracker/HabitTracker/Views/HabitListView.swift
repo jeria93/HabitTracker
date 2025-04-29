@@ -36,18 +36,15 @@ struct HabitListView: View {
                         }
                     }
                 }
-                .onDelete { IndexSet in
-                    IndexSet.forEach { index in
-                        let habit = viewmodel.habits[index]
-                        viewmodel.deleteHabit(habit: habit, context: modelContext)
-                    }
+                .onDelete { offset in
+                    viewmodel.delete(at: offset, context: modelContext)
                 }
                 
             }
             .navigationTitle("Habits")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink(destination: AddHabitView(viewModel: viewmodel, name: "test")) {
+                    NavigationLink(destination: AddHabitView(viewModel: viewmodel)) {
                         Image(systemName: "plus")
                     }
                 }
