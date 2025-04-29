@@ -12,6 +12,7 @@ struct HabitListView: View {
     
     @Query var habits: [Habit]
     @Environment(\.modelContext) var context
+    @StateObject var viewmodel = HabitListViewModel()
     
     var body: some View {
         NavigationStack {
@@ -19,9 +20,13 @@ struct HabitListView: View {
             List {
                 ForEach(habits) { habit in
                     HStack {
-                        VStack {
+                        VStack(alignment: .leading) {
                             Text(habit.name)
                                 .font(.headline)
+                            
+                            Text("Streak: \(habit.streak)")
+                                .font(.subheadline)
+                                .foregroundStyle(.gray)
                         }
                     }
                 }
@@ -36,5 +41,6 @@ struct HabitListView: View {
 #Preview {
     NavigationStack {
         HabitListView()
+            .modelContainer(PreviewData.previewContainer)
     }
 }
