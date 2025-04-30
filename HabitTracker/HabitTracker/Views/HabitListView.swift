@@ -21,6 +21,9 @@ struct HabitListView: View {
                 } else {
                     List {
                         ForEach(viewmodel.habits) { habit in
+                            
+                            let doneToday = viewmodel.isDoneToday(habit: habit)
+                            
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text(habit.name)
@@ -31,12 +34,17 @@ struct HabitListView: View {
                                         .foregroundStyle(.gray)
                                 }
                                 Spacer()
+                                
                                 Button {
-                                    
                                     viewmodel.markHabitAsDone(habit: habit, context: context)
                                 } label: {
-                                    Image(systemName: "checkmark.circle")
+                                    
+                                    Image(systemName: doneToday ? "checkmark.circle.fill" : "circlebadge")
+                                        .foregroundStyle(doneToday ? .green : .primary)
                                 }
+                                .disabled(doneToday)
+                                
+                                
                             }
                         }
                         .onDelete { offset in
@@ -66,15 +74,15 @@ struct HabitListView: View {
 #Preview {
     Group {
         //Standard-preview med vanor
-//        NavigationStack {
-//            HabitListView()
-//        }
-//        .modelContainer(PreviewDataProvider().container)
-        
-        //Preview med tom mock-data
         NavigationStack {
             HabitListView()
         }
-        .modelContainer(PreviewDataProvider.emptyContainer)
+        .modelContainer(PreviewDataProvider().container)
+        
+        //Preview med tom mock-data
+        //        NavigationStack {
+        //            HabitListView()
+        //        }
+        //        .modelContainer(PreviewDataProvider.emptyContainer)
     }
 }

@@ -47,4 +47,10 @@ final class HabitListViewModel: ObservableObject {
             deleteHabit(habit: habit, context: context)
         }
     }
+    
+    func isDoneToday(habit: Habit) -> Bool {
+        guard let last = habit.lastCompleted else { return false }
+        return Calendar.current.isDateInToday(last)
+    }
+    
 }
