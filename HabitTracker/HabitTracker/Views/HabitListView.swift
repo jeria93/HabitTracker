@@ -10,36 +10,41 @@ import SwiftData
 
 struct HabitListView: View {
     
-    @Environment(\.modelContext) var modelContext
+    @Environment(\.modelContext) private var context
     @StateObject var viewmodel = HabitListViewModel()
     
     var body: some View {
         NavigationStack {
-            
-            List {
-                ForEach(viewmodel.habits) { habit in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(habit.name)
-                                .font(.headline)
-                            
-                            Text("Streak: \(habit.streak)")
-                                .font(.subheadline)
-                                .foregroundStyle(.gray)
+            Group {
+                if viewmodel.habits.isEmpty {
+                    EmptyHabitView()
+                } else {
+                    List {
+                        ForEach(viewmodel.habits) { habit in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(habit.name)
+                                        .font(.headline)
+                                    
+                                    Text("Streak: \(habit.streak)")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.gray)
+                                }
+                                Spacer()
+                                Button {
+                                    
+                                    viewmodel.markHabitAsDone(habit: habit, context: context)
+                                } label: {
+                                    Image(systemName: "checkmark.circle")
+                                }
+                            }
                         }
-                        Spacer()
-                        Button {
-                            
-                            viewmodel.markHabitAsDone(habit: habit, context: modelContext)
-                        } label: {
-                            Image(systemName: "checkmark.circle")
+                        .onDelete { offset in
+                            viewmodel.delete(at: offset, context: context)
                         }
+                        
                     }
                 }
-                .onDelete { offset in
-                    viewmodel.delete(at: offset, context: modelContext)
-                }
-                
             }
             .navigationTitle("Habits")
             .toolbar {
@@ -49,19 +54,27 @@ struct HabitListView: View {
                     }
                 }
                 
-            }
-            .onAppear {
-                viewmodel.fetchHabits(context: modelContext)
+            }.onAppear {
+                viewmodel.fetchHabits(context: context)
             }
         }
+        
     }
     
 }
 
 #Preview {
-    let provider = PreviewDataProvider()
-    return NavigationStack {
-        HabitListView()
-            .modelContainer(provider.container)
+    Group {
+        //Standard-preview med vanor
+//        NavigationStack {
+//            HabitListView()
+//        }
+//        .modelContainer(PreviewDataProvider().container)
+        
+        //Preview med tom mock-data
+        NavigationStack {
+            HabitListView()
+        }
+        .modelContainer(PreviewDataProvider.emptyContainer)
     }
 }

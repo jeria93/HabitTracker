@@ -15,35 +15,57 @@ final class PreviewDataProvider {
     let container: ModelContainer
     
     init() {
-        do {
-            container = try ModelContainer(for: Habit.self, configurations: .init(isStoredInMemoryOnly: true))
-            addMockHabits()
-        } catch {
-            fatalError("Failde to create preview container/data: \(error)")
-        }
+        container = Self.makeContainer()
+        addMockHabits(into: container.mainContext)
     }
     
-    private func addMockHabits() {
-        let habits =   [
-            Habit(name: "Swim"),
-            Habit(name: "Drink Water"),
-            Habit(name: "Read 10 pages"),
-            Habit(name: "Go for a walk"),
-            Habit(name: "Go to the gym"),
-            Habit(name: "Medidate 10 minutes"),
-            Habit(name: "Cook dinner"),
-            Habit(name: "Walk the dog")
-        ]
+    init(empty _: Void) {
+        container = Self.makeContainer()
+    }
         
-        for habit in habits {
-            container.mainContext.insert(habit)
-        }
-    }
-    
     static var empty: ModelContainer {
         let provider = PreviewDataProvider()
         return provider.container
     }
     
+    private static func makeContainer() -> ModelContainer {
+        do {
+            return try ModelContainer(for: Habit.self, configurations: .init(isStoredInMemoryOnly: true))
+        } catch {
+            fatalError("Failed to create preview container/data: \(error)")
+        }
+    }
+    
+    private func addMockHabits(into context: ModelContext) {
+        Self.mockHabits.forEach { context.insert($0) }
+    }
+    
+//    Contains mockdata
+    private static let mockHabits: [Habit] = [
+        
+        .init(name: "Swim"),
+        .init(name: "Drink Water"),
+        .init(name: "Read 10 pages"),
+        .init(name: "Go for a walk"),
+        .init(name: "Go to the gym"),
+        .init(name: "Medidate 10 minutes"),
+        .init(name: "Cook dinner"),
+        .init(name: "Walk the dog"),
+        .init(name: "Go to bed early"),
+        
+        /*
+         
+         Funkar med Habit(name: "Go gym") också
+         
+         Habit(name: "Go gym"),
+         Habit(name: "Go gym")
+         etc
+         */
+    ]
+    
+    static var emptyContainer: ModelContainer {
+        PreviewDataProvider(empty: ()).container
+    }
+    
+    
 }
-

@@ -41,12 +41,3 @@ struct AddHabitView: View {
             .modelContainer(provider.container)
     }
 }
-
-
-
-//#Preview {
-//    let provider = PreviewDataProvider()
-//    return NavigationStack {
-//        HabitListView()
-//            .modelContainer(provider.container)
-//    }
