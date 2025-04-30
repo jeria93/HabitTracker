@@ -16,6 +16,25 @@ final class HabitListViewModel: ObservableObject {
     //PROPERTIES
     @Published var name: String = ""
     
+//    Alert logic - edit
+    @Published var habitEditing: Habit?
+    @Published var draftName: String = ""
+    @Published var showEditAlert = false
+    
+    
+    func renameHabit(context: ModelContext) {
+        guard let habit = habitEditing else { return }
+        habit.name = draftName
+        do {
+            try context.save()
+            fetchHabits(context: context)
+        } catch {
+            errorMessage = "Could not rename habit: \(error.localizedDescription)"
+        }
+        showEditAlert = false
+    }
+    
+    
     // MARK: - CRUD OPERATIONS
     func addHabit(name: String, context: ModelContext) {
         let newHabit = Habit(name: name)
