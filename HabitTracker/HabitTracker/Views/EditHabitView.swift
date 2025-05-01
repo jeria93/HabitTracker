@@ -10,37 +10,50 @@ import SwiftData
 
 struct EditHabitView: View {
     
-    @Environment(\.modelContext) private var context
+    let habit: Habit
     @ObservedObject var viewModel: HabitListViewModel
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationStack {
-            Form {
-                Section(header: Text("Edit Habit")) {
-                    TextField("Habit name", text: $viewModel.draftName)
+        
+        Form {
+            
+            Section {
+                TextField("Habit name", text: $viewModel.draftName)
+            } header: {
+                Text("Edit Habit")
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save") {
+                    viewModel.renameHabit(habit: habit, to: viewModel.draftName, context: context)
+                    dismiss()
+                }
+                .disabled(viewModel.draftName.isEmpty)
+            }
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    dismiss()
                 }
             }
-            .navigationTitle("Edit Habit")
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        viewModel.renameHabit(context: context)
-                    }
-                    .disabled(viewModel.draftName.isEmpty)
-                }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        viewModel.showEditAlert = false
-                    }
-                }
-            }
+        }
+        .onAppear {
+            viewModel.draftName = habit.name
         }
     }
 }
 
 
 #Preview {
-    NavigationStack {
-        EditHabitView(viewModel: HabitListViewModel())
+    // Statisk preview med mockdata
+    let provider = PreviewDataProvider()
+    let vm = HabitListViewModel()
+    vm.fetchHabits(context: provider.container.mainContext)
+    let first = vm.habits.first!
+    return NavigationStack {
+        EditHabitView(habit: first, viewModel: vm)
+            .modelContainer(provider.container)
     }
 }

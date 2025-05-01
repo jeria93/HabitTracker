@@ -9,9 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct HabitListView: View {
-    
     @Environment(\.modelContext) private var context
-    @StateObject var viewModel = HabitListViewModel()
+    @StateObject private var viewModel = HabitListViewModel()
     
     var body: some View {
         NavigationStack {
@@ -21,59 +20,28 @@ struct HabitListView: View {
                 } else {
                     List {
                         ForEach(viewModel.habits) { habit in
-                            
-                            let doneToday = viewModel.isDoneToday(habit: habit)
-                            
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text(habit.name)
-                                        .font(.headline)
-                                    
-                                    Text("Streak: \(habit.streak)")
-                                        .font(.subheadline)
-                                        .foregroundStyle(.gray)
-                                }
-                                
-                                Spacer()
-                                
-                                Button {
-                                    viewModel.markHabitAsDone(habit: habit, context: context)
-                                } label: {
-                                    
-                                    Image(systemName: doneToday ? "checkmark.circle.fill" : "circlebadge")
-                                        .foregroundStyle(doneToday ? .green : .primary)
-                                }
-                                .disabled(doneToday)
-                                
-                                
-                            }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                viewModel.habitEditing = habit
-                                viewModel.draftName = habit.name
-                                viewModel.showEditAlert = true
+                            HabitRowView(viewModel: viewModel, habit: habit, doneToday: viewModel.isDoneToday(habit: habit)) {
+                                viewModel.markHabitAsDone(habit: habit, context: context)
                             }
                         }
-                        .onDelete { offset in
-                            viewModel.delete(at: offset, context: context)
+                        .onDelete { offsets in
+                            viewModel.delete(at: offsets, context: context)
                         }
                     }
                 }
             }
             .navigationTitle("Habits")
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink(destination: AddHabitView(viewModel: viewModel)) {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        AddHabitView(viewModel: viewModel)
+                    } label: {
                         Image(systemName: "plus")
                     }
                 }
-                
-            }.onAppear {
-                viewModel.fetchHabits(context: context)
             }
-            .sheet(isPresented: $viewModel.showEditAlert) {
-                EditHabitView(viewModel: viewModel)
-                    .presentationDetents([.medium, .large])
+            .onAppear {
+                viewModel.fetchHabits(context: context)
             }
         }
     }

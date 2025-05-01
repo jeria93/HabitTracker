@@ -12,6 +12,7 @@
 		03A223112DC00580006C6D01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03A2230D2DC00580006C6D01 /* Assets.xcassets */; };
 		03A223122DC00580006C6D01 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A2230E2DC00580006C6D01 /* HabitListView.swift */; };
 		03A223132DC00580006C6D01 /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A2230F2DC00580006C6D01 /* HabitTrackerApp.swift */; };
+		03A392BA2DC35856006DD3F3 /* HabitRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A392B92DC35856006DD3F3 /* HabitRowView.swift */; };
 		03B47A312DC015C900F3A663 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B47A302DC015C900F3A663 /* Habit.swift */; };
 		03B47A332DC0230600F3A663 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B47A322DC0230600F3A663 /* AddHabitView.swift */; };
 		03B47A362DC0BB8600F3A663 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B47A352DC0BB8600F3A663 /* TimeManager.swift */; };
@@ -26,6 +27,7 @@
 		03A2230D2DC00580006C6D01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03A2230E2DC00580006C6D01 /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		03A2230F2DC00580006C6D01 /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
+		03A392B92DC35856006DD3F3 /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
 		03B47A302DC015C900F3A663 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		03B47A322DC0230600F3A663 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		03B47A352DC0BB8600F3A663 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
@@ -109,12 +111,21 @@
 		03A223172DC00593006C6D01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				03A392B82DC35849006DD3F3 /* Rows */,
 				038399D02DC2420A001D7248 /* EmptyViews */,
 				03A2230E2DC00580006C6D01 /* HabitListView.swift */,
 				03B47A322DC0230600F3A663 /* AddHabitView.swift */,
 				036FDAB32DC2B83600FA86BB /* EditHabitView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		03A392B82DC35849006DD3F3 /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				03A392B92DC35856006DD3F3 /* HabitRowView.swift */,
+			);
+			path = Rows;
 			sourceTree = "<group>";
 		};
 		03B47A342DC0BB7500F3A663 /* Utilities */ = {
@@ -207,6 +218,7 @@
 			files = (
 				03B47A312DC015C900F3A663 /* Habit.swift in Sources */,
 				038399D22DC2421D001D7248 /* EmptyHabitView.swift in Sources */,
+				03A392BA2DC35856006DD3F3 /* HabitRowView.swift in Sources */,
 				03B47A332DC0230600F3A663 /* AddHabitView.swift in Sources */,
 				03A223122DC00580006C6D01 /* HabitListView.swift in Sources */,
 				03B47A382DC0BD3E00F3A663 /* HabitListViewModel.swift in Sources */,

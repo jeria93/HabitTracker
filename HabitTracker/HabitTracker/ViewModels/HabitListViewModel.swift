@@ -22,8 +22,7 @@ final class HabitListViewModel: ObservableObject {
     @Published var showEditAlert = false
     
     
-    func renameHabit(context: ModelContext) {
-        guard let habit = habitEditing else { return }
+    func renameHabit(habit: Habit, to newName: String, context: ModelContext) {
         habit.name = draftName
         do {
             try context.save()
@@ -31,7 +30,6 @@ final class HabitListViewModel: ObservableObject {
         } catch {
             errorMessage = "Could not rename habit: \(error.localizedDescription)"
         }
-        showEditAlert = false
     }
     
     
