@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		036FDAB42DC2B83600FA86BB /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036FDAB32DC2B83600FA86BB /* EditHabitView.swift */; };
 		038399D22DC2421D001D7248 /* EmptyHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038399D12DC2421D001D7248 /* EmptyHabitView.swift */; };
 		03A223112DC00580006C6D01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03A2230D2DC00580006C6D01 /* Assets.xcassets */; };
 		03A223122DC00580006C6D01 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A2230E2DC00580006C6D01 /* HabitListView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		036FDAB32DC2B83600FA86BB /* EditHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
 		038399D12DC2421D001D7248 /* EmptyHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyHabitView.swift; sourceTree = "<group>"; };
 		03A222FF2DC0046E006C6D01 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A2230D2DC00580006C6D01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				038399D02DC2420A001D7248 /* EmptyViews */,
 				03A2230E2DC00580006C6D01 /* HabitListView.swift */,
 				03B47A322DC0230600F3A663 /* AddHabitView.swift */,
+				036FDAB32DC2B83600FA86BB /* EditHabitView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				03B47A332DC0230600F3A663 /* AddHabitView.swift in Sources */,
 				03A223122DC00580006C6D01 /* HabitListView.swift in Sources */,
 				03B47A382DC0BD3E00F3A663 /* HabitListViewModel.swift in Sources */,
+				036FDAB42DC2B83600FA86BB /* EditHabitView.swift in Sources */,
 				03B47A3B2DC0D40B00F3A663 /* PreviewDataProvider.swift in Sources */,
 				03B47A362DC0BB8600F3A663 /* TimeManager.swift in Sources */,
 				03A223132DC00580006C6D01 /* HabitTrackerApp.swift in Sources */,

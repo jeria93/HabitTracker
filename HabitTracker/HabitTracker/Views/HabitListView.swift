@@ -33,6 +33,7 @@ struct HabitListView: View {
                                         .font(.subheadline)
                                         .foregroundStyle(.gray)
                                 }
+                                
                                 Spacer()
                                 
                                 Button {
@@ -46,23 +47,15 @@ struct HabitListView: View {
                                 
                                 
                             }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                
-                                Button(role: .destructive) {
-                                    viewModel.deleteHabit(habit: habit, context: context)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                                
-                                Button {
-                                    viewModel.habitEditing = habit
-                                    viewModel.draftName = habit.name
-                                    viewModel.showEditAlert = true
-                                } label: {
-                                    Label("Edit", systemImage: "pencil")
-                                }
-                                .tint(.blue)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                viewModel.habitEditing = habit
+                                viewModel.draftName = habit.name
+                                viewModel.showEditAlert = true
                             }
+                        }
+                        .onDelete { offset in
+                            viewModel.delete(at: offset, context: context)
                         }
                     }
                 }
@@ -78,19 +71,9 @@ struct HabitListView: View {
             }.onAppear {
                 viewModel.fetchHabits(context: context)
             }
-            .alert("Edit Habit",
-                   isPresented: $viewModel.showEditAlert,
-                   presenting: viewModel.habitEditing) { habit in
-                TextField("Name", text: $viewModel.draftName)
-                Button("Save") {
-                    // Anropa metod utan habit-argument
-                    viewModel.renameHabit(context: context)
-                }
-                Button("Cancel", role: .cancel) {
-                    viewModel.showEditAlert = false
-                }
-            } message: { _ in
-                Text("Change the habit’s name")
+            .sheet(isPresented: $viewModel.showEditAlert) {
+                EditHabitView(viewModel: viewModel)
+                    .presentationDetents([.medium, .large])
             }
         }
     }
