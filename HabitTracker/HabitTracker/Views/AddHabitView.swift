@@ -36,14 +36,8 @@ struct AddHabitView: View {
 }
 
 #Preview {
-    let provider = PreviewDataProvider()
-    let context = provider.container.mainContext
-    let vm = HabitListViewModel()
-    vm.fetchHabits(context: context)
-    return NavigationStack {
-              AddHabitView()
-          }
-          .environmentObject(vm)                     // ← injicera VM här
-          .modelContainer(provider.container)  
+    PreviewWrapper {
+        HabitListView()
+    }
     
 }

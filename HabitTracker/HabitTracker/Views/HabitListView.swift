@@ -44,14 +44,8 @@ struct HabitListView: View {
 }
 
 #Preview {
-    let provider = PreviewDataProvider()
-    let vm = HabitListViewModel()
-    vm.fetchHabits(context: provider.container.mainContext)
-    
-    return NavigationStack {
+    PreviewWrapper {
         HabitListView()
-            .environmentObject(vm)
     }
-    .modelContainer(provider.container)
 }
 

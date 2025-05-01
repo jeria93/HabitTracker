@@ -51,3 +51,9 @@ struct HabitRowView: View {
 #Preview {
     HabitRowView(habit: .init(name: "First Habit")).environmentObject(HabitListViewModel())
 }
+
+//#Preview {
+//    PreviewWrapper {
+//        HabitRowView(habit: .init(name: "Walk the dog 🐕"))
+//    }
+//}
