@@ -10,13 +10,13 @@ import SwiftData
 
 @MainActor
 final class HabitListViewModel: ObservableObject {
+    
     @Published var habits: [Habit] = []
     @Published var errorMessage: String?
+
     
-    //PROPERTIES
     @Published var name: String = ""
     
-//    Alert logic - edit
     @Published var habitEditing: Habit?
     @Published var draftName: String = ""
     @Published var showEditAlert = false
@@ -34,10 +34,12 @@ final class HabitListViewModel: ObservableObject {
     
     
     // MARK: - CRUD OPERATIONS
-    func addHabit(name: String, context: ModelContext) {
+    func addHabit(context: ModelContext) {
         let newHabit = Habit(name: name)
         context.insert(newHabit)
         try? context.save()
+        name = ""
+        fetchHabits(context: context)
     }
     
     // READ

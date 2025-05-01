@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+//Gör om den till en singleton
 struct TimeManager {
     
     static func updateStreaks(for habit: Habit) {

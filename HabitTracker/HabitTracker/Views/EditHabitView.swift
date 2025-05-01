@@ -11,20 +11,20 @@ import SwiftData
 struct EditHabitView: View {
     
     let habit: Habit
-    @ObservedObject var viewModel: HabitListViewModel
+    @EnvironmentObject private var viewModel: HabitListViewModel
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         
         Form {
-            
             Section {
                 TextField("Habit name", text: $viewModel.draftName)
             } header: {
                 Text("Edit Habit")
             }
         }
+        .navigationTitle("Edit Habit")
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save") {
@@ -34,26 +34,14 @@ struct EditHabitView: View {
                 .disabled(viewModel.draftName.isEmpty)
             }
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel") {
-                    dismiss()
-                }
+                Button("Cancel") { dismiss() }
             }
         }
-        .onAppear {
-            viewModel.draftName = habit.name
-        }
+        .onAppear { viewModel.draftName = habit.name }
     }
 }
 
 
 #Preview {
-    // Statisk preview med mockdata
-    let provider = PreviewDataProvider()
-    let vm = HabitListViewModel()
-    vm.fetchHabits(context: provider.container.mainContext)
-    let first = vm.habits.first!
-    return NavigationStack {
-        EditHabitView(habit: first, viewModel: vm)
-            .modelContainer(provider.container)
-    }
+    EditHabitView(habit: .init(name: "Habit Name")).environmentObject(HabitListViewModel())
 }

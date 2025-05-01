@@ -10,10 +10,17 @@ import SwiftData
 
 @main
 struct HabitTrackerApp: App {
+    
+    @StateObject private var viewModel = HabitListViewModel()
+    
     var body: some Scene {
         WindowGroup {
-           HabitListView()
+            NavigationStack {
+                HabitListView()
+                   
+            }
+            .environmentObject(viewModel)
+            .modelContainer(for: Habit.self)
         }
-        .modelContainer(for: Habit.self)
     }
 }

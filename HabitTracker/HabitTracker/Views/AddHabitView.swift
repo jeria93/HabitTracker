@@ -12,10 +12,11 @@ struct AddHabitView: View {
     
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: HabitListViewModel
+    @EnvironmentObject private var viewModel: HabitListViewModel
+    
     
     var body: some View {
-       
+        
         Form {
             Section {
                 TextField("Start a new habit", text: $viewModel.name)
@@ -24,11 +25,11 @@ struct AddHabitView: View {
             }
             
             Button("Save") {
-                viewModel.addHabit(name: viewModel.name, context: context)
+                viewModel.addHabit(context: context)
                 dismiss()
             }
             .disabled(viewModel.name.isEmpty)
-
+            
         }
         .navigationTitle("Add Habit")
     }
@@ -36,8 +37,13 @@ struct AddHabitView: View {
 
 #Preview {
     let provider = PreviewDataProvider()
-    NavigationStack {
-        AddHabitView(viewModel: HabitListViewModel())
-            .modelContainer(provider.container)
-    }
+    let context = provider.container.mainContext
+    let vm = HabitListViewModel()
+    vm.fetchHabits(context: context)
+    return NavigationStack {
+              AddHabitView()
+          }
+          .environmentObject(vm)                     // ← injicera VM här
+          .modelContainer(provider.container)  
+    
 }

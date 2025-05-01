@@ -9,18 +9,18 @@ import SwiftUI
 
 struct HabitRowView: View {
     
-    @ObservedObject var viewModel: HabitListViewModel
+    @EnvironmentObject private var viewModel: HabitListViewModel
+    @Environment(\.modelContext) private var context
     let habit: Habit
-    let doneToday: Bool
-    let onDone: () -> Void
-    
+
     
     var body: some View {
         
         HStack {
             NavigationLink {
-                EditHabitView(habit: habit, viewModel: viewModel)
+                EditHabitView(habit: habit)
             } label: {
+                
                 VStack(alignment: .leading) {
                     Text(habit.name)
                         .font(.headline)
@@ -29,25 +29,25 @@ struct HabitRowView: View {
                         .font(.subheadline)
                         .foregroundStyle(.gray)
                 }
+                .buttonStyle(.plain)
+                .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
+
+            Spacer()
             
-            Button(action: onDone) {
-                Image(systemName: doneToday
-                      ? "checkmark.circle.fill"
-                      : "circle")
-                .foregroundStyle(doneToday ? .green : .primary)
+            Button {
+                viewModel.markHabitAsDone(habit: habit, context: context)
+            } label: {
+                Image(systemName: viewModel.isDoneToday(habit: habit) ? "checkmark.circle.fill" : "circlebadge")
+                    .foregroundStyle(viewModel.isDoneToday(habit: habit) ? .green : .primary)
             }
             .buttonStyle(.borderless)
-            .disabled(doneToday)
+            .disabled(viewModel.isDoneToday(habit: habit))
         }
         .padding(.vertical, 4)
     }
 }
 
 #Preview {
-
-            NavigationStack {
-                HabitRowView(viewModel: HabitListViewModel(), habit: .init(name: "My Habit"), doneToday: true, onDone: {})
-            }
+    HabitRowView(habit: .init(name: "First Habit")).environmentObject(HabitListViewModel())
 }
