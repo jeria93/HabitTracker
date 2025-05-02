@@ -20,7 +20,7 @@ struct HabitTrackerApp: App {
                    
             }
             .environmentObject(viewModel)
-            .modelContainer(for: Habit.self)
+            .modelContainer(for: [Habit.self, HabitCompletion.self])
         }
     }
 }

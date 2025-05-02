@@ -22,15 +22,7 @@ final class HabitListViewModel: ObservableObject {
     @Published var showEditAlert = false
     
     
-    func renameHabit(habit: Habit, to newName: String, context: ModelContext) {
-        habit.name = draftName
-        do {
-            try context.save()
-            fetchHabits(context: context)
-        } catch {
-            errorMessage = "Could not rename habit: \(error.localizedDescription)"
-        }
-    }
+
     
     
     // MARK: - CRUD OPERATIONS
@@ -51,7 +43,20 @@ final class HabitListViewModel: ObservableObject {
     // UPDATE
     func markHabitAsDone(habit: Habit, context: ModelContext) {
         TimeManager.updateStreaks(for: habit)
+        
+        let completed = HabitCompletion(habit: habit)
+        context.insert(completed) // -> Theoretically is now saving a habit with a range of history
         try? context.save()
+    }
+    
+    func renameHabit(habit: Habit, to newName: String, context: ModelContext) {
+        habit.name = draftName
+        do {
+            try context.save()
+            fetchHabits(context: context)
+        } catch {
+            errorMessage = "Could not rename habit: \(error.localizedDescription)"
+        }
     }
     
     // MARK: - Delete
