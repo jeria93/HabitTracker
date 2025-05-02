@@ -24,6 +24,7 @@
 		03C45E092DC4AD7300CFE931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C45DE32DC4AD7300CFE931 /* Assets.xcassets */; };
 		03C45E0C2DC4AD8B00CFE931 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45E0B2DC4AD8B00CFE931 /* StatsView.swift */; };
 		03C45E0F2DC4B06E00CFE931 /* SleepDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45E0E2DC4B06E00CFE931 /* SleepDataPoint.swift */; };
+		03C45E112DC4B32900CFE931 /* DemoStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45E102DC4B32900CFE931 /* DemoStatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		03C45DF92DC4AD7300CFE931 /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
 		03C45E0B2DC4AD8B00CFE931 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		03C45E0E2DC4B06E00CFE931 /* SleepDataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDataPoint.swift; sourceTree = "<group>"; };
+		03C45E102DC4B32900CFE931 /* DemoStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoStatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				03C45E0B2DC4AD8B00CFE931 /* StatsView.swift */,
+				03C45E102DC4B32900CFE931 /* DemoStatsView.swift */,
 			);
 			path = StatsViews;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				03C45DFD2DC4AD7300CFE931 /* StreakPoints.swift in Sources */,
 				03C45DFE2DC4AD7300CFE931 /* PreviewDataProvider.swift in Sources */,
 				03C45DFF2DC4AD7300CFE931 /* PreviewWrapper.swift in Sources */,
+				03C45E112DC4B32900CFE931 /* DemoStatsView.swift in Sources */,
 				03C45E002DC4AD7300CFE931 /* TimeManager.swift in Sources */,
 				03C45E012DC4AD7300CFE931 /* HabitListViewModel.swift in Sources */,
 				03C45E022DC4AD7300CFE931 /* HabitStatsViewModel.swift in Sources */,

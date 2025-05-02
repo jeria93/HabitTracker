@@ -7,9 +7,17 @@
 
 import Foundation
 
-struct SleepDataPoint {
+struct SleepDataPoint: Identifiable {
     
+    let id = UUID().uuidString
     var day: String
     var hours: Int
+    var type: String
+    
+    init(day: String, hours: Int, type: String = "Night") {
+        self.day = day
+        self.hours = hours
+        self.type = type
+    }
     
 }
