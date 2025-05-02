@@ -28,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		036292CD2DC4F5A70079ADF7 /* Time.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Time.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		03A222FF2DC0046E006C6D01 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C45DE32DC4AD7300CFE931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03C45DE52DC4AD7300CFE931 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				03C45DEC2DC4AD7300CFE931 /* TimeManager.swift */,
+				036292CD2DC4F5A70079ADF7 /* Time.playground */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
