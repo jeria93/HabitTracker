@@ -20,6 +20,11 @@ struct HabitListView: View {
                 List {
                     ForEach(viewModel.habits) { habit in
                         HabitRowView(habit: habit)
+//                            .onTapGesture {
+//                                viewModel.habitEditing = habit
+//                                viewModel.draftName = habit.name
+//                                viewModel.showEditSheet = true
+//                            }
                     }
                     .onDelete { offsets in
                         viewModel.delete(at: offsets, context: context)
@@ -30,8 +35,11 @@ struct HabitListView: View {
         .navigationTitle("Habits")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink {
-                    AddHabitView()
+                Button {
+                    // "Add new"
+                    viewModel.habitEditing = nil
+                    viewModel.draftName = ""
+                    viewModel.showEditSheet = true
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -39,6 +47,24 @@ struct HabitListView: View {
         }
         .onAppear {
             viewModel.fetchHabits(context: context)
+        }
+        .sheet(isPresented: $viewModel.showEditSheet) {
+            EditHabitSheet(
+                habit: viewModel.habitEditing,
+                draftName: $viewModel.draftName,
+                onSave: { name in
+                    if let h = viewModel.habitEditing {
+                        viewModel.renameHabit(habit: h, to: name, context: context)
+                    } else {
+                        viewModel.addHabit(name: name, context: context)
+                    }
+                    viewModel.showEditSheet = false
+                },
+                onCancel: {
+                    viewModel.showEditSheet = false
+                }
+            )
+            .presentationDetents([.medium, .large])
         }
     }
 }
@@ -48,4 +74,3 @@ struct HabitListView: View {
         HabitListView()
     }
 }
-

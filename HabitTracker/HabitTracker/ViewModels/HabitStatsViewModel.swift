@@ -22,6 +22,13 @@ final class HabitStatsViewModel: ObservableObject {
     init(habit: Habit, context: ModelContext) {
         self.habit = habit
         self.context = context
+        refresh()
+    }
+    
+    func refresh() {
+        daily = generateStats(component: .day, periodCount: 7)
+        weekly = generateStats(component: .weekOfYear, periodCount: 4)
+        monthly = generateStats(component: .month, periodCount: 6)
     }
 
     func generateStats(component: Calendar.Component, periodCount: Int) -> [StreakPoints] {

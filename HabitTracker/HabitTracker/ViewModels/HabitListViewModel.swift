@@ -16,21 +16,19 @@ final class HabitListViewModel: ObservableObject {
 
     
     @Published var name: String = ""
-    
     @Published var habitEditing: Habit?
     @Published var draftName: String = ""
-    @Published var showEditAlert = false
+    @Published var showEditSheet = false
     
     
 
     
     
     // MARK: - CRUD OPERATIONS
-    func addHabit(context: ModelContext) {
+    func addHabit(name: String, context: ModelContext) {
         let newHabit = Habit(name: name)
         context.insert(newHabit)
         try? context.save()
-        name = ""
         fetchHabits(context: context)
     }
     

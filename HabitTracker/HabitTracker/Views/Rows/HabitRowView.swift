@@ -12,25 +12,24 @@ struct HabitRowView: View {
     @EnvironmentObject private var viewModel: HabitListViewModel
     @Environment(\.modelContext) private var context
     let habit: Habit
-
+    
     
     var body: some View {
         
         HStack {
-            NavigationLink {
-                EditHabitView(habit: habit)
-            } label: {
+            VStack(alignment: .leading) {
+                Text(habit.name)
+                    .font(.headline)
                 
-                VStack(alignment: .leading) {
-                    Text(habit.name)
-                        .font(.headline)
-                    
-                    Text("Streak: \(habit.streak)")
-                        .font(.subheadline)
-                        .foregroundStyle(.gray)
-                }
-                .buttonStyle(.plain)
-                .contentShape(Rectangle())
+                Text("Streak: \(habit.streak)")
+                    .font(.subheadline)
+                    .foregroundStyle(.gray)
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                viewModel.habitEditing = habit
+                viewModel.draftName = habit.name
+                viewModel.showEditSheet = true
             }
 
             Spacer()
