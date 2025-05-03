@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		036292CF2DC565410079ADF7 /* StatsPreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */; };
 		03C45DFB2DC4AD7300CFE931 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE52DC4AD7300CFE931 /* Habit.swift */; };
 		03C45DFC2DC4AD7300CFE931 /* HabitCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE62DC4AD7300CFE931 /* HabitCompletion.swift */; };
 		03C45DFD2DC4AD7300CFE931 /* StreakPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE72DC4AD7300CFE931 /* StreakPoints.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		036292CD2DC4F5A70079ADF7 /* Time.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Time.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPreviewWrapper.swift; sourceTree = "<group>"; };
 		03A222FF2DC0046E006C6D01 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C45DE32DC4AD7300CFE931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03C45DE52DC4AD7300CFE931 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				03C45DE92DC4AD7300CFE931 /* PreviewDataProvider.swift */,
 				03C45DEA2DC4AD7300CFE931 /* PreviewWrapper.swift */,
+				036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */,
 			);
 			path = PreviewData;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				03C45DFC2DC4AD7300CFE931 /* HabitCompletion.swift in Sources */,
 				03C45DFD2DC4AD7300CFE931 /* StreakPoints.swift in Sources */,
 				03C45DFE2DC4AD7300CFE931 /* PreviewDataProvider.swift in Sources */,
+				036292CF2DC565410079ADF7 /* StatsPreviewWrapper.swift in Sources */,
 				03C45DFF2DC4AD7300CFE931 /* PreviewWrapper.swift in Sources */,
 				03C45E112DC4B32900CFE931 /* DemoStatsView.swift in Sources */,
 				03C45E002DC4AD7300CFE931 /* TimeManager.swift in Sources */,

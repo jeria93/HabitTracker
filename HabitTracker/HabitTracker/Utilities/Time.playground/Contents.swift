@@ -67,3 +67,55 @@ if calender.isDateInToday(now2) {
 print("------------------------------------------------")
 
 // Check if a date is tomorrow
+if let tomorrow = calender.date(byAdding: .day, value: 1, to: now2),
+   calender.isDateInTomorrow(tomorrow) {
+    print("The date for tomorrow is: \(tomorrow)")
+} else { print("No days to see here!")}
+
+print("------------------------------------------------")
+
+// Start and end of the month
+let startOfTheMonth = calender.date(from: calender.dateComponents([.year, .month], from: now1))!
+print("Start of the month: \(startOfTheMonth)")
+
+print("------------------------------------------------")
+
+// Number of days in month
+let range = calender.range(of: .day, in: .month, for: now1)!
+print("Number of days in this month: \(range.count)")
+
+print("------------------------------------------------")
+
+// Get the time interval for the day
+if let todayInterval = calender.dateInterval(of: .day, for: .now) {
+    print("Start of the day: \(formatter.string(from: todayInterval.start))")
+    print("End of the day: \(formatter.string(from: todayInterval.end))")
+}
+
+print("------------------------------------------------")
+
+// Get the time interval for the week
+if let weekInterval = calender.dateInterval(of: .weekOfYear, for: .now) {
+    print("Start of the week: \(formatter.string(from: weekInterval.start))")
+    print("End of the week: \(formatter.string(from: weekInterval.end))")
+}
+
+print("------------------------------------------------")
+
+// Get the time interval for the month
+if let monthInterval = calender.dateInterval(of: .month, for: .now) {
+    print("Start of the month: \(formatter.string(from: monthInterval.start))")
+    print("End of the month: \(formatter.string(from: monthInterval.end))")
+}
+
+print("------------------------------------------------")
+
+if let monthInterval = calender.dateInterval(of: .month, for: .now) {
+    
+    let days = calender.dateComponents([.day], from: monthInterval.start, to: monthInterval.end).day!
+    print("Number of days in this month: \(days)")
+    
+}
+
+
+
