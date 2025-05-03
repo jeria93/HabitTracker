@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03145E3D2DC6B2F500110779 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03145E3C2DC6B2F500110779 /* WelcomeView.swift */; };
 		036292CF2DC565410079ADF7 /* StatsPreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */; };
 		03C45DFB2DC4AD7300CFE931 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE52DC4AD7300CFE931 /* Habit.swift */; };
 		03C45DFC2DC4AD7300CFE931 /* HabitCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE62DC4AD7300CFE931 /* HabitCompletion.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03145E3C2DC6B2F500110779 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		036292CD2DC4F5A70079ADF7 /* Time.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Time.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPreviewWrapper.swift; sourceTree = "<group>"; };
 		03A222FF2DC0046E006C6D01 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				03C45DF42DC4AD7300CFE931 /* Rows */,
 				03C45DF62DC4AD7300CFE931 /* EditHabitSheet.swift */,
 				03C45DF72DC4AD7300CFE931 /* HabitListView.swift */,
+				03145E3C2DC6B2F500110779 /* WelcomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				03C45E032DC4AD7300CFE931 /* EmptyHabitView.swift in Sources */,
 				03C45E042DC4AD7300CFE931 /* HabitRowView.swift in Sources */,
 				03C45E0C2DC4AD8B00CFE931 /* StatsView.swift in Sources */,
+				03145E3D2DC6B2F500110779 /* WelcomeView.swift in Sources */,
 				03C45E0F2DC4B06E00CFE931 /* SleepDataPoint.swift in Sources */,
 				03C45E062DC4AD7300CFE931 /* EditHabitSheet.swift in Sources */,
 				03C45E072DC4AD7300CFE931 /* HabitListView.swift in Sources */,
