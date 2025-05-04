@@ -13,8 +13,6 @@ final class HabitListViewModel: ObservableObject {
     
     @Published var habits: [Habit] = []
     @Published var errorMessage: String?
-
-    
     @Published var name: String = ""
     @Published var habitEditing: Habit?
     @Published var draftName: String = ""
@@ -48,7 +46,7 @@ final class HabitListViewModel: ObservableObject {
     }
     
     func renameHabit(habit: Habit, to newName: String, context: ModelContext) {
-        habit.name = draftName
+        habit.name = newName
         do {
             try context.save()
             fetchHabits(context: context)
@@ -56,7 +54,7 @@ final class HabitListViewModel: ObservableObject {
             errorMessage = "Could not rename habit: \(error.localizedDescription)"
         }
     }
-    
+
     // MARK: - Delete
     func deleteHabit(habit: Habit, context: ModelContext) {
         context.delete(habit)

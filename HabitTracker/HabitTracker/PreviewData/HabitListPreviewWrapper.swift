@@ -14,7 +14,7 @@ struct PreviewWrapper<Content: View>: View {
     private let content: Content
     private let container: ModelContainer
     
-    init(withMockData: Bool = true, content: () -> Content) {
+    init(withMockData: Bool = true, @ViewBuilder content: () -> Content) {
         
         self.container = withMockData ? PreviewDataProvider.filled : PreviewDataProvider.empty
         self.content = content()

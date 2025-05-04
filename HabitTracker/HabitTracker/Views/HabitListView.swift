@@ -29,8 +29,15 @@ struct HabitListView: View {
                     .font(.title3)
             }
              
-             
-             //   Button
+            /* Habit List, Button */
+            
+            LazyVStack {
+                ForEach(viewModel.habits) { habit in
+                    Text(habit.name)
+                }
+            }
+            
+            
              
              Button {
                  print("tapped")
@@ -91,7 +98,7 @@ struct HabitListView: View {
 }
 
 
-#Preview{
+#Preview {
     PreviewWrapper(withMockData: true) {
         HabitListView()
     }

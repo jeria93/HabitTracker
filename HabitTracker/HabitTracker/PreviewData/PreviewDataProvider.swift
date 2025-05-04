@@ -20,7 +20,12 @@ final class PreviewDataProvider {
     
     private init(fill: Bool) {
         container = Self.makeContainer()
-        if fill { }
+        if fill {
+            let previewContext = container.mainContext
+            addMockHabits(into: previewContext)
+            try? previewContext.save()
+            
+        }
     }
 
     private static func makeContainer() -> ModelContainer {
@@ -32,7 +37,7 @@ final class PreviewDataProvider {
     }
 
     private func addMockHabits(into context: ModelContext) {
-        Self.mockHabits.forEach(context.insert)
+        Self.mockHabits.forEach { context.insert($0) }
     }
     
 //    Contains mockdata
