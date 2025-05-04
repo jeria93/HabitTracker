@@ -16,6 +16,7 @@ final class Habit {
     var streak: Int
     var lastCompleted: Date?
     var habitDescription: String
+    var emoji: String
     
     @Relationship(deleteRule: .cascade, inverse: \HabitCompletion.habit)
     var completions: [HabitCompletion]
@@ -27,5 +28,6 @@ final class Habit {
         self.lastCompleted = nil
         self.completions = []
         self.habitDescription = ""
+        self.emoji = ""
     }
 }

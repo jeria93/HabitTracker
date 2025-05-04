@@ -1,5 +1,5 @@
 //
-//  PreviewWrapper.swift
+//  HabitListPreviewWrapper.swift
 //  HabitTracker
 //
 //  Created by Nicholas Samuelsson Jeria on 2025-05-01.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct PreviewWrapper<Content: View>: View {
+struct HabitListPreviewWrapper<Content: View>: View {
     
     @StateObject private var viewModel = HabitListViewModel()
     private let content: Content
@@ -40,7 +40,7 @@ struct PreviewWrapper<Content: View>: View {
  */
 
 #Preview {
-    PreviewWrapper(withMockData: true) {
+    HabitListPreviewWrapper(withMockData: true) {
         Text("Hello, World!")
     }
 }
