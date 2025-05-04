@@ -35,7 +35,7 @@ struct StatsView: View {
         .navigationTitle("7 Days of Habit Completions")
     }
   }
-
-#Preview {
-    StatsPreviewWrapper()
-}
+//
+//#Preview {
+//    StatsPreviewWrapper()
+//}

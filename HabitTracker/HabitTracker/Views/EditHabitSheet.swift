@@ -47,9 +47,9 @@ struct EditHabitSheet: View {
     }
 }
 
-
-#Preview {
-    NavigationStack {
-        EditHabitSheet(habit: .init(name: "Preview"), draftName: .constant("Preview"), onSave: {_ in }, onCancel: {}).modelContainer(PreviewDataProvider().container)
-    }
-}
+//
+//#Preview {
+//    NavigationStack {
+//        EditHabitSheet(habit: .init(name: "Preview"), draftName: .constant("Preview"), onSave: {_ in }, onCancel: {}).modelContainer(PreviewDataProvider().container)
+//    }
+//}

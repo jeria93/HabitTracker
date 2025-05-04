@@ -17,7 +17,7 @@ struct HabitTrackerApp: App {
         WindowGroup {
             NavigationStack {
                 HabitListView()
-                   
+                
             }
             .environmentObject(viewModel)
             .modelContainer(for: [Habit.self, HabitCompletion.self])

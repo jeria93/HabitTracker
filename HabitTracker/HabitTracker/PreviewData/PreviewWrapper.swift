@@ -4,36 +4,43 @@
 //
 //  Created by Nicholas Samuelsson Jeria on 2025-05-01.
 //
-
+//
 import SwiftUI
 import SwiftData
 
 struct PreviewWrapper<Content: View>: View {
     
-    let content: Content
+    @StateObject private var viewModel = HabitListViewModel()
+    private let content: Content
+    private let container: ModelContainer
     
-    init(content: () -> Content) {
+    init(withMockData: Bool = true, content: () -> Content) {
+        
+        self.container = withMockData ? PreviewDataProvider.filled : PreviewDataProvider.empty
         self.content = content()
     }
     
-    
-    /*
-     /// if you want to pass several views in the preview -  else use content for one
-     init (@ViewBuilder content: () -> Content) {
-     self.content = content()
-     }
-     
-     */
-    
-    
     var body: some View {
-        let provider = PreviewDataProvider()
-        let viewModel = HabitListViewModel()
-        viewModel.fetchHabits(context: provider.container.mainContext)
-        return NavigationStack {
+        NavigationStack {
             content
                 .environmentObject(viewModel)
         }
-        .modelContainer(provider.container)
+        .modelContainer(container)
+        .onAppear {
+            viewModel.fetchHabits(context: container.mainContext)
+        }
+    }
+}
+/*
+ /// if you want to pass several views in the preview -  else use content for one
+ init (@ViewBuilder content: () -> Content) {
+ self.content = content()
+ }
+ 
+ */
+
+#Preview {
+    PreviewWrapper(withMockData: true) {
+        Text("Hello, World!")
     }
 }

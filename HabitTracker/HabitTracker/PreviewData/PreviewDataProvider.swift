@@ -14,30 +14,25 @@ final class PreviewDataProvider {
     
     let container: ModelContainer
     
-    init() {
-        container = Self.makeContainer()
-        addMockHabits(into: container.mainContext)
-    }
+    static var filled: ModelContainer { PreviewDataProvider(fill: true).container }
     
-    init(empty _: Void) {
-        container = Self.makeContainer()
-    }
-        
-    static var empty: ModelContainer {
-        let provider = PreviewDataProvider()
-        return provider.container
-    }
+    static var empty: ModelContainer { PreviewDataProvider(fill: false).container }
     
+    private init(fill: Bool) {
+        container = Self.makeContainer()
+        if fill { }
+    }
+
     private static func makeContainer() -> ModelContainer {
         do {
-            return try ModelContainer(for: Habit.self, configurations: .init(isStoredInMemoryOnly: true))
+            return try ModelContainer(for: Habit.self, HabitCompletion.self, configurations: .init(isStoredInMemoryOnly: true))
         } catch {
             fatalError("Failed to create preview container/data: \(error)")
         }
     }
-    
+
     private func addMockHabits(into context: ModelContext) {
-        Self.mockHabits.forEach { context.insert($0) }
+        Self.mockHabits.forEach(context.insert)
     }
     
 //    Contains mockdata
@@ -54,18 +49,12 @@ final class PreviewDataProvider {
         .init(name: "Go to bed early"),
         
         /*
-         
-         Funkar med Habit(name: "Go gym") också
+         you can either do .init or Habit(name: "Nicholas")
+         Also works with:
          
          Habit(name: "Go gym"),
          Habit(name: "Go gym")
          etc
          */
     ]
-    
-    static var emptyContainer: ModelContainer {
-        PreviewDataProvider(empty: ()).container
-    }
-    
-    
 }
