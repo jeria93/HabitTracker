@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		03145E3D2DC6B2F500110779 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03145E3C2DC6B2F500110779 /* WelcomeView.swift */; };
 		03145E402DC7A57700110779 /* HabitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03145E3F2DC7A57700110779 /* HabitButtonView.swift */; };
+		0318F4532DCA3AB2004EBCFD /* TextFieldWithLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318F4522DCA3AB2004EBCFD /* TextFieldWithLimitView.swift */; };
+		034A1C7B2DCA494200ED55EC /* EmojiValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A1C7A2DCA494200ED55EC /* EmojiValidator.swift */; };
 		036292CF2DC565410079ADF7 /* StatsPreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */; };
+		036980122DCAA55F00B50CB7 /* HabitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036980112DCAA55F00B50CB7 /* HabitError.swift */; };
+		03B2617F2DC8A65F006B25EB /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2617E2DC8A65F006B25EB /* TodayView.swift */; };
 		03C45DFB2DC4AD7300CFE931 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE52DC4AD7300CFE931 /* Habit.swift */; };
 		03C45DFC2DC4AD7300CFE931 /* HabitCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE62DC4AD7300CFE931 /* HabitCompletion.swift */; };
 		03C45DFD2DC4AD7300CFE931 /* StreakPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE72DC4AD7300CFE931 /* StreakPoints.swift */; };
@@ -19,8 +23,7 @@
 		03C45E012DC4AD7300CFE931 /* HabitListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DEE2DC4AD7300CFE931 /* HabitListViewModel.swift */; };
 		03C45E022DC4AD7300CFE931 /* HabitStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DEF2DC4AD7300CFE931 /* HabitStatsViewModel.swift */; };
 		03C45E032DC4AD7300CFE931 /* EmptyHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DF12DC4AD7300CFE931 /* EmptyHabitView.swift */; };
-		03C45E042DC4AD7300CFE931 /* HabitRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DF32DC4AD7300CFE931 /* HabitRowView.swift */; };
-		03C45E062DC4AD7300CFE931 /* EditHabitSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DF62DC4AD7300CFE931 /* EditHabitSheet.swift */; };
+		03C45E062DC4AD7300CFE931 /* HabitFormSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DF62DC4AD7300CFE931 /* HabitFormSheet.swift */; };
 		03C45E072DC4AD7300CFE931 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DF72DC4AD7300CFE931 /* HabitListView.swift */; };
 		03C45E082DC4AD7300CFE931 /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DF92DC4AD7300CFE931 /* HabitTrackerApp.swift */; };
 		03C45E092DC4AD7300CFE931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C45DE32DC4AD7300CFE931 /* Assets.xcassets */; };
@@ -32,9 +35,13 @@
 /* Begin PBXFileReference section */
 		03145E3C2DC6B2F500110779 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		03145E3F2DC7A57700110779 /* HabitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitButtonView.swift; sourceTree = "<group>"; };
+		0318F4522DCA3AB2004EBCFD /* TextFieldWithLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLimitView.swift; sourceTree = "<group>"; };
+		034A1C7A2DCA494200ED55EC /* EmojiValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiValidator.swift; sourceTree = "<group>"; };
 		036292CD2DC4F5A70079ADF7 /* Time.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Time.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPreviewWrapper.swift; sourceTree = "<group>"; };
+		036980112DCAA55F00B50CB7 /* HabitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitError.swift; sourceTree = "<group>"; };
 		03A222FF2DC0046E006C6D01 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03B2617E2DC8A65F006B25EB /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		03C45DE32DC4AD7300CFE931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03C45DE52DC4AD7300CFE931 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		03C45DE62DC4AD7300CFE931 /* HabitCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCompletion.swift; sourceTree = "<group>"; };
@@ -45,8 +52,7 @@
 		03C45DEE2DC4AD7300CFE931 /* HabitListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListViewModel.swift; sourceTree = "<group>"; };
 		03C45DEF2DC4AD7300CFE931 /* HabitStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStatsViewModel.swift; sourceTree = "<group>"; };
 		03C45DF12DC4AD7300CFE931 /* EmptyHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyHabitView.swift; sourceTree = "<group>"; };
-		03C45DF32DC4AD7300CFE931 /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
-		03C45DF62DC4AD7300CFE931 /* EditHabitSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitSheet.swift; sourceTree = "<group>"; };
+		03C45DF62DC4AD7300CFE931 /* HabitFormSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitFormSheet.swift; sourceTree = "<group>"; };
 		03C45DF72DC4AD7300CFE931 /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		03C45DF92DC4AD7300CFE931 /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
 		03C45E0B2DC4AD8B00CFE931 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
@@ -73,6 +79,14 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		036980102DCAA46900B50CB7 /* ErrorTypes  */ = {
+			isa = PBXGroup;
+			children = (
+				036980112DCAA55F00B50CB7 /* HabitError.swift */,
+			);
+			path = "ErrorTypes ";
+			sourceTree = "<group>";
+		};
 		03A222F62DC0046E006C6D01 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +101,14 @@
 				03A222FF2DC0046E006C6D01 /* HabitTracker.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		03B2617D2DC8A653006B25EB /* TimeViews */ = {
+			isa = PBXGroup;
+			children = (
+				03B2617E2DC8A65F006B25EB /* TodayView.swift */,
+			);
+			path = TimeViews;
 			sourceTree = "<group>";
 		};
 		03C45DE42DC4AD7300CFE931 /* Assets */ = {
@@ -122,6 +144,7 @@
 			children = (
 				03C45DEC2DC4AD7300CFE931 /* TimeManager.swift */,
 				036292CD2DC4F5A70079ADF7 /* Time.playground */,
+				034A1C7A2DCA494200ED55EC /* EmojiValidator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -143,24 +166,17 @@
 			path = EmptyViews;
 			sourceTree = "<group>";
 		};
-		03C45DF42DC4AD7300CFE931 /* Rows */ = {
-			isa = PBXGroup;
-			children = (
-				03C45DF32DC4AD7300CFE931 /* HabitRowView.swift */,
-			);
-			path = Rows;
-			sourceTree = "<group>";
-		};
 		03C45DF82DC4AD7300CFE931 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				03B2617D2DC8A653006B25EB /* TimeViews */,
 				03145E3E2DC7A56800110779 /* Buttons */,
 				03C45E0A2DC4AD7800CFE931 /* StatsViews */,
 				03C45DF22DC4AD7300CFE931 /* EmptyViews */,
-				03C45DF42DC4AD7300CFE931 /* Rows */,
-				03C45DF62DC4AD7300CFE931 /* EditHabitSheet.swift */,
+				03C45DF62DC4AD7300CFE931 /* HabitFormSheet.swift */,
 				03C45DF72DC4AD7300CFE931 /* HabitListView.swift */,
 				03145E3C2DC6B2F500110779 /* WelcomeView.swift */,
+				0318F4522DCA3AB2004EBCFD /* TextFieldWithLimitView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +184,7 @@
 		03C45DFA2DC4AD7300CFE931 /* HabitTracker */ = {
 			isa = PBXGroup;
 			children = (
+				036980102DCAA46900B50CB7 /* ErrorTypes  */,
 				03C45DE42DC4AD7300CFE931 /* Assets */,
 				03C45DE82DC4AD7300CFE931 /* Models */,
 				03C45DEB2DC4AD7300CFE931 /* PreviewData */,
@@ -276,18 +293,21 @@
 				036292CF2DC565410079ADF7 /* StatsPreviewWrapper.swift in Sources */,
 				03C45DFF2DC4AD7300CFE931 /* HabitListPreviewWrapper.swift in Sources */,
 				03C45E112DC4B32900CFE931 /* DemoStatsView.swift in Sources */,
+				036980122DCAA55F00B50CB7 /* HabitError.swift in Sources */,
+				034A1C7B2DCA494200ED55EC /* EmojiValidator.swift in Sources */,
 				03C45E002DC4AD7300CFE931 /* TimeManager.swift in Sources */,
 				03C45E012DC4AD7300CFE931 /* HabitListViewModel.swift in Sources */,
+				0318F4532DCA3AB2004EBCFD /* TextFieldWithLimitView.swift in Sources */,
 				03C45E022DC4AD7300CFE931 /* HabitStatsViewModel.swift in Sources */,
 				03C45E032DC4AD7300CFE931 /* EmptyHabitView.swift in Sources */,
-				03C45E042DC4AD7300CFE931 /* HabitRowView.swift in Sources */,
 				03C45E0C2DC4AD8B00CFE931 /* StatsView.swift in Sources */,
 				03145E3D2DC6B2F500110779 /* WelcomeView.swift in Sources */,
 				03C45E0F2DC4B06E00CFE931 /* SleepDataPoint.swift in Sources */,
-				03C45E062DC4AD7300CFE931 /* EditHabitSheet.swift in Sources */,
+				03C45E062DC4AD7300CFE931 /* HabitFormSheet.swift in Sources */,
 				03C45E072DC4AD7300CFE931 /* HabitListView.swift in Sources */,
 				03145E402DC7A57700110779 /* HabitButtonView.swift in Sources */,
 				03C45E082DC4AD7300CFE931 /* HabitTrackerApp.swift in Sources */,
+				03B2617F2DC8A65F006B25EB /* TodayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

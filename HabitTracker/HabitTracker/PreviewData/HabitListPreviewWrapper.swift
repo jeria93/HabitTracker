@@ -38,9 +38,9 @@ struct HabitListPreviewWrapper<Content: View>: View {
  }
  
  */
-
-#Preview {
-    HabitListPreviewWrapper(withMockData: true) {
-        Text("Hello, World!")
-    }
-}
+//
+//#Preview {
+//    HabitListPreviewWrapper(withMockData: true) {
+//        Text("Hello, World!")
+//    }
+//}

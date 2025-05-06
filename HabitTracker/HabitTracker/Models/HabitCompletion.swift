@@ -12,7 +12,7 @@ import SwiftData
 final class HabitCompletion {
     @Attribute(.unique) var id: UUID
     var date: Date
-    var habit: Habit
+    var habit: Habit?
     
     init(habit: Habit, date: Date = .now) {
         self.id = UUID()

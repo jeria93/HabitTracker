@@ -46,8 +46,9 @@ struct WelcomeView: View {
                 
                 Spacer()
                 
-                Button {
-                    print("start")
+                NavigationLink {
+                    HabitListView()
+                        .navigationBarBackButtonHidden()
                 } label: {
                     Text("Start The Journey")
                         .font(.headline)
@@ -61,8 +62,7 @@ struct WelcomeView: View {
                                 .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 5)
                         )
                 }
-                .padding(.horizontal, 24)
-                .buttonStyle(PlainButtonStyle())
+                .padding()
                 
                 Spacer()
             }

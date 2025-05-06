@@ -45,38 +45,38 @@ final class PreviewDataProvider {
         
         var previewData: [Habit] = []
         
-        let meditation = Habit(name: "Meditation")
+        let meditation = Habit(title: "Meditation")
         meditation.emoji = "🧘‍♂️"
         meditation.habitDescription = "Meditate for 10 minutes each day."
         meditation.streak = 5
         previewData.append(meditation)
         
         
-        let workout = Habit(name: "Workout")
+        let workout = Habit(title: "Workout")
         workout.emoji = "💪"
         workout.habitDescription = "Go to the gym for at least 30 minutes"
         workout.streak = 3
         previewData.append(workout)
         
-        let reading = Habit(name: "Read 10 Pages")
+        let reading = Habit(title: "Read 10 Pages")
         reading.emoji = "📖"
         reading.habitDescription = "Read at least 10 pages of a book"
         reading.streak = 5
         previewData.append(reading)
         
-        let water = Habit(name: "Drink Water")
+        let water = Habit(title: "Drink Water")
         water.emoji = "💧"
         water.habitDescription = "Drink at least 8 glasses of water"
         water.streak = 10
         previewData.append(water)
         
-        let walkDog = Habit(name: "Walk the Dog")
+        let walkDog = Habit(title: "Walk the Dog")
         walkDog.emoji = "🐕"
         walkDog.habitDescription = "Take the dog for a 30-minute walk"
         walkDog.streak = 4
         previewData.append(walkDog)
         
-        let journaling = Habit(name: "Journaling")
+        let journaling = Habit(title: "Journaling")
         journaling.emoji = "📝"
         journaling.habitDescription = "Write one paragraph about your day"
         journaling.streak = 2

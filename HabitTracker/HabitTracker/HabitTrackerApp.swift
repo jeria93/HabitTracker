@@ -16,7 +16,7 @@ struct HabitTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                HabitListView()
+                WelcomeView()
                 
             }
             .environmentObject(viewModel)

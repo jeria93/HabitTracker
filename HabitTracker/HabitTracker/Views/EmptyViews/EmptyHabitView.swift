@@ -11,22 +11,36 @@ struct EmptyHabitView: View {
     
     var body: some View {
         
-        VStack(spacing: 20) {
+        ZStack {
             
-            Image(systemName: "plus.square.on.square")
-                .font(.system(size: 60))
-                .foregroundStyle(.gray.opacity(0.5))
+            LinearGradient(
+                colors: [Color.blue, Color.purple],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
             
-            Text("No habits yet!")
-                .font(.headline)
-            
-            Text("Start adding habits by tapping the plus button in the top right corner.")
-                .font(.subheadline)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.secondary)
-                .padding(.horizontal)
-            
-        }.padding()
+            VStack(spacing: 30) {
+                
+                Image(systemName: "plus.square.on.square")
+                    .font(.system(size: 80))
+                    .foregroundStyle(.gray.opacity(0.9))
+                    .shadow(radius: 10)
+                
+                Text("No habits yet!")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.white)
+                    
+                
+                Text("Start adding habits by tapping the plus button in the top right corner.")
+                    .font(.subheadline)
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.white.opacity(0.9))
+                    .padding(.horizontal, 30)
+                
+            }.padding()
+        }
     }
 }
 

@@ -11,60 +11,84 @@ import SwiftData
 @MainActor
 final class HabitListViewModel: ObservableObject {
     
+    
+    @Published var showAddHabitSheet: Bool = false
+    @Published var isEditing: Bool = false
+    
     @Published var habits: [Habit] = []
-    @Published var errorMessage: String?
+    @Published var errorMessage: HabitError?
     @Published var name: String = ""
-    @Published var habitEditing: Habit?
-    @Published var draftName: String = ""
-    @Published var showEditSheet = false
-    
-    
-
-    
     
     // MARK: - CRUD OPERATIONS
-    func addHabit(name: String, context: ModelContext) {
-        let newHabit = Habit(name: name)
+    
+    func addHabit(emoji: String, title: String, description: String, context: ModelContext) {
+        print("addhabit called with:", emoji, title, description)
+        let newHabit = Habit(title: title)
+        newHabit.emoji = emoji
+        newHabit.habitDescription = description
         context.insert(newHabit)
-        try? context.save()
-        fetchHabits(context: context)
+        do {
+            try context.save()
+            fetchHabits(context: context)
+        } catch {
+            errorMessage = .creationFailed(title)
+        }
     }
     
     // READ
     func fetchHabits(context: ModelContext) {
-        let descriptor = FetchDescriptor<Habit>(sortBy: [SortDescriptor(\.name)])
-        habits = (try? context.fetch(descriptor)) ?? []
+        let descriptor = FetchDescriptor<Habit>(sortBy: [SortDescriptor(\.title)])
+        do {
+            habits = try context.fetch(descriptor)
+        } catch {
+            errorMessage = .fetchFailed
+        }
     }
     
     // UPDATE
     func markHabitAsDone(habit: Habit, context: ModelContext) {
         TimeManager.updateStreaks(for: habit)
-        
         let completed = HabitCompletion(habit: habit)
         context.insert(completed) // -> Theoretically is now saving a habit with a range of history
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            errorMessage = .updateFailed(habit.title)
+        }
     }
     
-    func renameHabit(habit: Habit, to newName: String, context: ModelContext) {
-        habit.name = newName
+    func updateHabit(_ habit: Habit, emoji: String, title:String, details: String, context: ModelContext) {
+        habit.emoji = emoji
+        habit.title = title
+        habit.habitDescription = details
         do {
             try context.save()
             fetchHabits(context: context)
         } catch {
-            errorMessage = "Could not rename habit: \(error.localizedDescription)"
+            errorMessage = .updateFailed(title)
         }
     }
-
-    // MARK: - Delete
-    func deleteHabit(habit: Habit, context: ModelContext) {
-        context.delete(habit)
-        try? context.save()
-        fetchHabits(context: context)
+    
+    func renameHabit(habit: Habit, to newName: String, context: ModelContext) {
+        habit.title = newName
+        do {
+            try context.save()
+            fetchHabits(context: context)
+        } catch {
+            errorMessage = .updateFailed(newName)
+        }
     }
     
-    func delete(at offsets: IndexSet, context: ModelContext) {
-        offsets.map { habits[$0] }.forEach { habit in
-            deleteHabit(habit: habit, context: context)
+    // MARK: - Delete
+    func deleteHabit(habit: Habit, context: ModelContext) {
+        print("deleteHabit called for: \(habit.title)")
+        habit.completions.forEach { context.delete($0) }
+        context.delete(habit)
+        do {
+            try context.save()
+            fetchHabits(context: context)
+        } catch {
+            errorMessage = .deletionFailed(habit.title)
         }
     }
     

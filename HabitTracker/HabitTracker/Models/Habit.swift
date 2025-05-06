@@ -12,7 +12,7 @@ import SwiftData
 @Model
 final class Habit {
     @Attribute(.unique) var id: UUID
-    var name: String //change to title?
+    var title: String
     var streak: Int
     var lastCompleted: Date?
     var habitDescription: String
@@ -21,9 +21,9 @@ final class Habit {
     @Relationship(deleteRule: .cascade, inverse: \HabitCompletion.habit)
     var completions: [HabitCompletion]
     
-    init(name: String) {
+    init(title: String) {
         self.id = UUID()
-        self.name = name
+        self.title = title
         self.streak = 0
         self.lastCompleted = nil
         self.completions = []

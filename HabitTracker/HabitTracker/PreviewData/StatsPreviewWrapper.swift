@@ -16,7 +16,7 @@
 //        let previewProvider = PreviewDataProvider()
 //        let previewContext = previewProvider.container.mainContext
 //        
-//        let habit = Habit(name: "Mock Habit")
+//        let habit = Habit(title: "Mock Habit")
 //        previewContext.insert(habit)
 //        
 //        for i in 0..<7 {

@@ -1,5 +1,4 @@
 import UIKit
-// en kort förklaring till vad det är för fil / playground
 
 // “now” holds the exact current date and time and down to second (and sub-second) precision (2025-05-02 12:46:21 +0000)
 let now1 = Date()
