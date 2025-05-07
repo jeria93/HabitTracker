@@ -27,7 +27,7 @@
 		03C45E072DC4AD7300CFE931 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DF72DC4AD7300CFE931 /* HabitListView.swift */; };
 		03C45E082DC4AD7300CFE931 /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DF92DC4AD7300CFE931 /* HabitTrackerApp.swift */; };
 		03C45E092DC4AD7300CFE931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C45DE32DC4AD7300CFE931 /* Assets.xcassets */; };
-		03C45E0C2DC4AD8B00CFE931 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45E0B2DC4AD8B00CFE931 /* StatsView.swift */; };
+		03C45E0C2DC4AD8B00CFE931 /* HabitStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45E0B2DC4AD8B00CFE931 /* HabitStatisticsView.swift */; };
 		03C45E0F2DC4B06E00CFE931 /* SleepDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45E0E2DC4B06E00CFE931 /* SleepDataPoint.swift */; };
 		03C45E112DC4B32900CFE931 /* DemoStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45E102DC4B32900CFE931 /* DemoStatsView.swift */; };
 /* End PBXBuildFile section */
@@ -55,7 +55,7 @@
 		03C45DF62DC4AD7300CFE931 /* HabitFormSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitFormSheet.swift; sourceTree = "<group>"; };
 		03C45DF72DC4AD7300CFE931 /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		03C45DF92DC4AD7300CFE931 /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
-		03C45E0B2DC4AD8B00CFE931 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		03C45E0B2DC4AD8B00CFE931 /* HabitStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStatisticsView.swift; sourceTree = "<group>"; };
 		03C45E0E2DC4B06E00CFE931 /* SleepDataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDataPoint.swift; sourceTree = "<group>"; };
 		03C45E102DC4B32900CFE931 /* DemoStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoStatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,7 +199,7 @@
 		03C45E0A2DC4AD7800CFE931 /* StatsViews */ = {
 			isa = PBXGroup;
 			children = (
-				03C45E0B2DC4AD8B00CFE931 /* StatsView.swift */,
+				03C45E0B2DC4AD8B00CFE931 /* HabitStatisticsView.swift */,
 				03C45E102DC4B32900CFE931 /* DemoStatsView.swift */,
 			);
 			path = StatsViews;
@@ -300,7 +300,7 @@
 				0318F4532DCA3AB2004EBCFD /* TextFieldWithLimitView.swift in Sources */,
 				03C45E022DC4AD7300CFE931 /* HabitStatsViewModel.swift in Sources */,
 				03C45E032DC4AD7300CFE931 /* EmptyHabitView.swift in Sources */,
-				03C45E0C2DC4AD8B00CFE931 /* StatsView.swift in Sources */,
+				03C45E0C2DC4AD8B00CFE931 /* HabitStatisticsView.swift in Sources */,
 				03145E3D2DC6B2F500110779 /* WelcomeView.swift in Sources */,
 				03C45E0F2DC4B06E00CFE931 /* SleepDataPoint.swift in Sources */,
 				03C45E062DC4AD7300CFE931 /* HabitFormSheet.swift in Sources */,

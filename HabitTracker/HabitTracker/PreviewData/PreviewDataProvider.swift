@@ -18,7 +18,7 @@ final class PreviewDataProvider {
     
     static var empty: ModelContainer { PreviewDataProvider(fill: false).container }
     
-    private init(fill: Bool) {
+    init(fill: Bool) {
         container = Self.makeContainer()
         if fill {
             let previewContext = container.mainContext
