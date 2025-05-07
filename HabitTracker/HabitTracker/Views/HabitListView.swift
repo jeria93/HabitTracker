@@ -85,12 +85,23 @@ struct HabitListView: View {
         })
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button(isEditing ? "Done" : "Delete") {
+                Button {
                     withAnimation(.easeInOut(duration: 0.25)) {
                         isEditing.toggle()
                     }
-                    
+                } label: {
+                    Image(systemName: isEditing ? "checkmark" : "trash")
+                        .font(.system(size: 20))
+                        .foregroundStyle(.white)
+                        .frame(width: 40, height: 40)
+                        .background(
+                            Circle()
+                                .fill(.orange)
+                                .shadow(color: .black.opacity(0.25), radius: 6, y: 4)
+                        )
                 }
+                .padding(.horizontal)
+
             }
         }
     }

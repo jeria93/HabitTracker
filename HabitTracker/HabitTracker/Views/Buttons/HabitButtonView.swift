@@ -16,15 +16,46 @@ struct HabitButtonView: View {
     let habit: Habit
     let openEdit: () -> Void
     @Binding var isEditing: Bool
+    @State private var showEditFAB = false
     
     var body: some View {
         
-        Button { viewModel.markHabitAsDone(habit: habit, context: context) } label: {
+        ZStack {
+            
             cardContent
+                .opacity(showEditFAB ? 0.5 : 1)
+                .animation(.easeInOut, value: showEditFAB)
+                .onTapGesture { viewModel.markHabitAsDone(habit: habit, context: context) }
+                .simultaneousGesture(
+                    LongPressGesture(minimumDuration: 0.5)
+                        .onEnded({ _ in
+                            withAnimation(.spring()) { showEditFAB.toggle() }
+                        })
+                )
+                .contentShape(Rectangle())
+            
+            if showEditFAB {
+                
+                Button {
+                    showEditFAB = false
+                    openEdit()
+                } label: {
+                    Image(systemName: "pencil")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.white)
+                        .frame(width: 44, height: 44)
+                        .background(
+                            Circle()
+                                .fill(.blue)
+                                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+                        )
+                }
+                .transition(.scale.combined(with: .opacity))
+                .zIndex(1)
+            }
+            
         }
-        .contextMenu {
-            Button("Edit") { openEdit() }
-        }
+        
     }
     
     private var cardContent: some View {
@@ -40,11 +71,17 @@ struct HabitButtonView: View {
                 Text(habit.title)
                     .font(.title2.bold())
                     .foregroundStyle(.orange)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
+                    .layoutPriority(1)
+//                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(habit.habitDescription)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.75)
+                    .layoutPriority(1)
                 
                 Text("\(habit.streak) day streak")
                     .font(.subheadline)
