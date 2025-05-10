@@ -34,10 +34,15 @@ struct DemoStatsView: View {
         (name: "Dosa", sales: 625)
     ]
     
+    @State var text = ""
+    
     var body: some View {
         
         VStack(alignment: .leading) {
             
+            TextField("Enter something", text: $text)
+//                .cardStyle()
+
             Text("Sleep & Activity Overview")
                 .font(.title2)
                 .bold()

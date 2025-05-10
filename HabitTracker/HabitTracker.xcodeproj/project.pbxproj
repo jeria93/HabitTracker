@@ -11,8 +11,14 @@
 		03145E402DC7A57700110779 /* HabitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03145E3F2DC7A57700110779 /* HabitButtonView.swift */; };
 		0318F4532DCA3AB2004EBCFD /* TextFieldWithLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318F4522DCA3AB2004EBCFD /* TextFieldWithLimitView.swift */; };
 		034A1C7B2DCA494200ED55EC /* EmojiValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A1C7A2DCA494200ED55EC /* EmojiValidator.swift */; };
-		036292CF2DC565410079ADF7 /* StatsPreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */; };
+		034EC99B2DCCAFBF009257A5 /* StatsSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC99A2DCCAFBF009257A5 /* StatsSummaryView.swift */; };
+		034EC99D2DCCD9D2009257A5 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC99C2DCCD9D2009257A5 /* Period.swift */; };
+		034EC9A02DCCEB36009257A5 /* HabitStatisticsView+ChartContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC99F2DCCEB36009257A5 /* HabitStatisticsView+ChartContent.swift */; };
+		034EC9A22DCCEBC3009257A5 /* HabitStatisticsView+AxisContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC9A12DCCEBC3009257A5 /* HabitStatisticsView+AxisContent.swift */; };
 		036980122DCAA55F00B50CB7 /* HabitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036980112DCAA55F00B50CB7 /* HabitError.swift */; };
+		03903D8D2DCBD77800C409DE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03903D8C2DCBD77800C409DE /* SettingsView.swift */; };
+		0397A4E92DCB672A000F2E3A /* PracticalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397A4E82DCB672A000F2E3A /* PracticalExtensions.swift */; };
+		0397A50B2DCB6D47000F2E3A /* MultiSampleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397A50A2DCB6D47000F2E3A /* MultiSampleButton.swift */; };
 		03B2617F2DC8A65F006B25EB /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2617E2DC8A65F006B25EB /* TodayView.swift */; };
 		03C45DFB2DC4AD7300CFE931 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE52DC4AD7300CFE931 /* Habit.swift */; };
 		03C45DFC2DC4AD7300CFE931 /* HabitCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C45DE62DC4AD7300CFE931 /* HabitCompletion.swift */; };
@@ -37,9 +43,15 @@
 		03145E3F2DC7A57700110779 /* HabitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitButtonView.swift; sourceTree = "<group>"; };
 		0318F4522DCA3AB2004EBCFD /* TextFieldWithLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLimitView.swift; sourceTree = "<group>"; };
 		034A1C7A2DCA494200ED55EC /* EmojiValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiValidator.swift; sourceTree = "<group>"; };
+		034EC99A2DCCAFBF009257A5 /* StatsSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsSummaryView.swift; sourceTree = "<group>"; };
+		034EC99C2DCCD9D2009257A5 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		034EC99F2DCCEB36009257A5 /* HabitStatisticsView+ChartContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitStatisticsView+ChartContent.swift"; sourceTree = "<group>"; };
+		034EC9A12DCCEBC3009257A5 /* HabitStatisticsView+AxisContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitStatisticsView+AxisContent.swift"; sourceTree = "<group>"; };
 		036292CD2DC4F5A70079ADF7 /* Time.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Time.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPreviewWrapper.swift; sourceTree = "<group>"; };
 		036980112DCAA55F00B50CB7 /* HabitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitError.swift; sourceTree = "<group>"; };
+		03903D8C2DCBD77800C409DE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0397A4E82DCB672A000F2E3A /* PracticalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticalExtensions.swift; sourceTree = "<group>"; };
+		0397A50A2DCB6D47000F2E3A /* MultiSampleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSampleButton.swift; sourceTree = "<group>"; };
 		03A222FF2DC0046E006C6D01 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B2617E2DC8A65F006B25EB /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		03C45DE32DC4AD7300CFE931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,8 +87,18 @@
 			isa = PBXGroup;
 			children = (
 				03145E3F2DC7A57700110779 /* HabitButtonView.swift */,
+				0397A50A2DCB6D47000F2E3A /* MultiSampleButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		034EC99E2DCCEAC1009257A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				034EC99F2DCCEB36009257A5 /* HabitStatisticsView+ChartContent.swift */,
+				034EC9A12DCCEBC3009257A5 /* HabitStatisticsView+AxisContent.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		036980102DCAA46900B50CB7 /* ErrorTypes  */ = {
@@ -85,6 +107,14 @@
 				036980112DCAA55F00B50CB7 /* HabitError.swift */,
 			);
 			path = "ErrorTypes ";
+			sourceTree = "<group>";
+		};
+		0397A4E72DCB6712000F2E3A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0397A4E82DCB672A000F2E3A /* PracticalExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		03A222F62DC0046E006C6D01 = {
@@ -134,7 +164,6 @@
 			children = (
 				03C45DE92DC4AD7300CFE931 /* PreviewDataProvider.swift */,
 				03C45DEA2DC4AD7300CFE931 /* HabitListPreviewWrapper.swift */,
-				036292CE2DC565410079ADF7 /* StatsPreviewWrapper.swift */,
 			);
 			path = PreviewData;
 			sourceTree = "<group>";
@@ -171,12 +200,13 @@
 			children = (
 				03B2617D2DC8A653006B25EB /* TimeViews */,
 				03145E3E2DC7A56800110779 /* Buttons */,
-				03C45E0A2DC4AD7800CFE931 /* StatsViews */,
+				03C45E0A2DC4AD7800CFE931 /* Statistics */,
 				03C45DF22DC4AD7300CFE931 /* EmptyViews */,
 				03C45DF62DC4AD7300CFE931 /* HabitFormSheet.swift */,
 				03C45DF72DC4AD7300CFE931 /* HabitListView.swift */,
 				03145E3C2DC6B2F500110779 /* WelcomeView.swift */,
 				0318F4522DCA3AB2004EBCFD /* TextFieldWithLimitView.swift */,
+				03903D8C2DCBD77800C409DE /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +214,7 @@
 		03C45DFA2DC4AD7300CFE931 /* HabitTracker */ = {
 			isa = PBXGroup;
 			children = (
+				0397A4E72DCB6712000F2E3A /* Extensions */,
 				036980102DCAA46900B50CB7 /* ErrorTypes  */,
 				03C45DE42DC4AD7300CFE931 /* Assets */,
 				03C45DE82DC4AD7300CFE931 /* Models */,
@@ -196,13 +227,15 @@
 			path = HabitTracker;
 			sourceTree = "<group>";
 		};
-		03C45E0A2DC4AD7800CFE931 /* StatsViews */ = {
+		03C45E0A2DC4AD7800CFE931 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				034EC99E2DCCEAC1009257A5 /* Extensions */,
 				03C45E0B2DC4AD8B00CFE931 /* HabitStatisticsView.swift */,
 				03C45E102DC4B32900CFE931 /* DemoStatsView.swift */,
+				034EC99A2DCCAFBF009257A5 /* StatsSummaryView.swift */,
 			);
-			path = StatsViews;
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 		03C45E0D2DC4B05100CFE931 /* Charts */ = {
@@ -210,6 +243,7 @@
 			children = (
 				03C45DE72DC4AD7300CFE931 /* StreakPoints.swift */,
 				03C45E0E2DC4B06E00CFE931 /* SleepDataPoint.swift */,
+				034EC99C2DCCD9D2009257A5 /* Period.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -289,8 +323,8 @@
 				03C45DFB2DC4AD7300CFE931 /* Habit.swift in Sources */,
 				03C45DFC2DC4AD7300CFE931 /* HabitCompletion.swift in Sources */,
 				03C45DFD2DC4AD7300CFE931 /* StreakPoints.swift in Sources */,
+				0397A4E92DCB672A000F2E3A /* PracticalExtensions.swift in Sources */,
 				03C45DFE2DC4AD7300CFE931 /* PreviewDataProvider.swift in Sources */,
-				036292CF2DC565410079ADF7 /* StatsPreviewWrapper.swift in Sources */,
 				03C45DFF2DC4AD7300CFE931 /* HabitListPreviewWrapper.swift in Sources */,
 				03C45E112DC4B32900CFE931 /* DemoStatsView.swift in Sources */,
 				036980122DCAA55F00B50CB7 /* HabitError.swift in Sources */,
@@ -300,12 +334,18 @@
 				0318F4532DCA3AB2004EBCFD /* TextFieldWithLimitView.swift in Sources */,
 				03C45E022DC4AD7300CFE931 /* HabitStatsViewModel.swift in Sources */,
 				03C45E032DC4AD7300CFE931 /* EmptyHabitView.swift in Sources */,
+				03903D8D2DCBD77800C409DE /* SettingsView.swift in Sources */,
 				03C45E0C2DC4AD8B00CFE931 /* HabitStatisticsView.swift in Sources */,
 				03145E3D2DC6B2F500110779 /* WelcomeView.swift in Sources */,
 				03C45E0F2DC4B06E00CFE931 /* SleepDataPoint.swift in Sources */,
 				03C45E062DC4AD7300CFE931 /* HabitFormSheet.swift in Sources */,
+				034EC9A22DCCEBC3009257A5 /* HabitStatisticsView+AxisContent.swift in Sources */,
+				0397A50B2DCB6D47000F2E3A /* MultiSampleButton.swift in Sources */,
 				03C45E072DC4AD7300CFE931 /* HabitListView.swift in Sources */,
+				034EC99D2DCCD9D2009257A5 /* Period.swift in Sources */,
+				034EC9A02DCCEB36009257A5 /* HabitStatisticsView+ChartContent.swift in Sources */,
 				03145E402DC7A57700110779 /* HabitButtonView.swift in Sources */,
+				034EC99B2DCCAFBF009257A5 /* StatsSummaryView.swift in Sources */,
 				03C45E082DC4AD7300CFE931 /* HabitTrackerApp.swift in Sources */,
 				03B2617F2DC8A65F006B25EB /* TodayView.swift in Sources */,
 			);
@@ -448,6 +488,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -476,6 +517,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

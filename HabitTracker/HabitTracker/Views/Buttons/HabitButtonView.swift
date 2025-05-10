@@ -15,13 +15,13 @@ struct HabitButtonView: View {
     
     let habit: Habit
     let openEdit: () -> Void
+    let openStats: (Habit) -> Void
     @Binding var isEditing: Bool
     @State private var showEditFAB = false
     
     var body: some View {
         
         ZStack {
-            
             cardContent
                 .opacity(showEditFAB ? 0.5 : 1)
                 .animation(.easeInOut, value: showEditFAB)
@@ -36,19 +36,37 @@ struct HabitButtonView: View {
             
             if showEditFAB {
                 
-                Button {
-                    showEditFAB = false
-                    openEdit()
-                } label: {
-                    Image(systemName: "pencil")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
-                        .frame(width: 44, height: 44)
-                        .background(
-                            Circle()
-                                .fill(.blue)
-                                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
-                        )
+                HStack(spacing: 20) {
+                    
+                    Button {
+                        showEditFAB = false
+                        print("Edit Habit tapped")
+                        openEdit()
+                    } label: {
+                        Image(systemName: "pencil")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 44, height: 44)
+                            .background(
+                                Circle()
+                                    .fill(.blue)
+                                    .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2))
+                    }
+                    
+                    Button {
+                        showEditFAB = false
+                        print("Statistics tapped")
+                        openStats(habit)
+                    } label: {
+                        Image(systemName: "chart.bar.fill")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 44, height: 44)
+                            .background(
+                                Circle()
+                                    .fill(.green)
+                                    .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2))
+                    }
                 }
                 .transition(.scale.combined(with: .opacity))
                 .zIndex(1)
@@ -59,6 +77,7 @@ struct HabitButtonView: View {
     }
     
     private var cardContent: some View {
+        
         
         HStack(spacing: 15) {
             
@@ -74,7 +93,6 @@ struct HabitButtonView: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
                     .layoutPriority(1)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(habit.habitDescription)
                     .font(.subheadline)
@@ -113,14 +131,19 @@ struct HabitButtonView: View {
             
         }
         .padding()
-        .background(Color(.systemBackground))
+        .background(
+            LinearGradient(
+                colors: [Color.blue.opacity(0.4), Color.purple.opacity(0.4)],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        ))
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .shadow(color: .gray, radius: 2)
     }
 }
 
 #Preview {
-    HabitButtonView(habit: DeveloperPreview.habits[0], openEdit: {}, isEditing: .constant(true)).environmentObject(HabitListViewModel())
+    HabitButtonView(habit: DeveloperPreview.habits[0], openEdit: {}, openStats: {_ in }, isEditing: .constant(true)).environmentObject(HabitListViewModel())
 }
 
 final class DeveloperPreview {

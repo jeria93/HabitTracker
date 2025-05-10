@@ -22,7 +22,13 @@ struct HabitFormSheet: View {
     
     let onSave: (String, String, String) -> Void
     
-    private var isFormValid: Bool { !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+    private var isNew: Bool {
+        habit == nil || title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
+    private var isFormValid: Bool {
+        !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
     
     init(habit: Habit? = nil,
          onSave: @escaping (String,String,String) -> Void = {_,_,_ in}
@@ -89,8 +95,8 @@ struct HabitFormSheet: View {
                             showClearButton: true
                         )
                         
-                        
-                        Button(habit == nil ? "Save Habit" : "Update Habit") {
+                        Button(isNew ? "Save Habit" : "Update Habit") {
+                            print("Save / Habit Tapped")
                             onSave(emoji, title, details)
                             dismiss()
                         }
@@ -105,26 +111,24 @@ struct HabitFormSheet: View {
                         )
                         .disabled(!isFormValid)
                         
-                        if habit == nil {
-                            Button("Cancel", role: .cancel) {
-                                dismiss()
-                            }
-                            .font(.headline.bold())
-                            .foregroundStyle(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(
-                                Capsule()
-                                    .fill(Color.orange)
-                                    .shadow(color: .black.opacity(0.3),radius: 5, y: 5)
-                            )
-                            
+                        Button("Cancel", role: .cancel) {
+                            print("Tapped Cancel")
+                            dismiss()
                         }
+                        .font(.headline.bold())
+                        .foregroundStyle(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            Capsule()
+                                .fill(Color.orange)
+                                .shadow(color: .black.opacity(0.3),radius: 5, y: 5)
+                        )
                     }
                     .padding(30)
                 }
             }
-            .navigationTitle(habit == nil ? "New Habit" : "Edit Habit")
+            .navigationTitle(isNew ? "New Habit" : "Edit Habit")
             .toolbar(.hidden, for: .navigationBar)
             .hideKeyboardOnTap()
         }
@@ -144,51 +148,4 @@ struct HabitFormSheet: View {
     mock.emoji = "📚"
     mock.habitDescription = "Before bedtime"
     return HabitFormSheet(habit: mock)
-}
-
-
-/// Limits the bound String to a specified maximum number of characters.
-///
-/// if the input exceeds the limit, the value will be trimmed automatically.
-/// for possible future implementations, it suppports haptic feedback when the limit is reached. e.g. vibration
-/// - Parameters:
-///     - limit:    The maximum number of characters allowed.
-///     - didReachLimit:    A binding used to track whether the limit has just been reached, which can be used to trigger optional feedback.
-///     - Returns:  A Binding<String> that never surpasses the specified character limit
-///
-///     Ideal for use in form fields (textfields) or input areas where you want to force character limits.
-///     Haptic feedback may be added in future versions.
-extension Binding where Value == String {
-    func limited(to limit: Int, didReachLimit: Binding<Bool>) -> Binding<String> {
-        Binding(
-            get: { self.wrappedValue },
-            set: { newValue in
-                let limitedValue = String(newValue.prefix(limit))
-                self.wrappedValue = limitedValue
-                
-                if limitedValue.count == limit && !didReachLimit.wrappedValue {
-                    let generator = UIImpactFeedbackGenerator(style: .light)
-                    generator.impactOccurred()
-                    didReachLimit.wrappedValue = true
-                } else if limitedValue.count < limit {
-                    didReachLimit.wrappedValue = false
-                }
-            }
-        )
-    }
-}
-
-
-/// Hides the keyboard when tapping anywhere outside in the view
-///
-/// - Returns: The original view itself after a tap gesture
-///
-/// ideal for forms and sheets
-extension View {
-    
-    func hideKeyboardOnTap() -> some View {
-        self.onTapGesture {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        }
-    }
 }

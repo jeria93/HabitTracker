@@ -6,19 +6,32 @@
 //
 import SwiftUI
 import SwiftData
+import Charts
 
 struct HabitListView: View {
     
     @EnvironmentObject private var viewModel: HabitListViewModel
     @Environment(\.modelContext) var context
     
+    @State private var showNoHabitAlert = false
     @State var showFormSheet: Bool = false
     @State var isEditing: Bool = false
-    @State var editingTarget: Habit? = nil
+    @State private var editingTarget: Habit? = nil
+    
+    //    MARK: Navigation
+    @State private var showStats = false
+    @State private var showSettings = false
+    @State private var selectedStatsHabit: Habit? = nil
     
     var body: some View {
         
         ZStack(alignment: .bottomTrailing) {
+            LinearGradient(
+                colors: [Color.blue, Color.purple],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 30) {
@@ -36,52 +49,48 @@ struct HabitListView: View {
                     
                     LazyVStack(spacing: 15) {
                         ForEach(viewModel.habits) { habit in
-                            HabitButtonView(habit: habit, openEdit: {
-                                editingTarget = habit
-                                showFormSheet = true
-                            }, isEditing: $isEditing)
+                            HabitButtonView(
+                                habit: habit,
+                                openEdit: { editingTarget = habit },
+                                openStats: { selectedStatsHabit = $0 },
+                                isEditing: $isEditing
+                            )
                         }
                     }
                 }
                 .padding()
             }
-            .onAppear {viewModel.fetchHabits(context: context) }
+            .onAppear { viewModel.fetchHabits(context: context) }
             
-            if !showFormSheet && !isEditing {
-                Button {
-                    withAnimation(.spring()) {
-                        editingTarget = nil
-                        showFormSheet = true
+            FloatingButton {
+                FloatingAction(symbol: "chart.bar.fill") {
+                    
+                    if let first = viewModel.habits.first {
+                        selectedStatsHabit = first
+                    } else {
+                        
+                        showNoHabitAlert = true
                     }
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.system(size: 28, weight: .bold))
-                        .foregroundStyle(.white)
-                        .frame(width: 60, height: 60)
-                        .background(
-                            Circle()
-                                .fill(Color.orange)
-                                .shadow(color: .black.opacity(0.25),
-                                        radius: 6, y: 4)
-                        )
                 }
-                .padding(.trailing, 25)
-                .padding(.bottom, 30)
-                .accessibilityLabel("Add new habit")
-                .transition(.scale)
+                FloatingAction(symbol: "gearshape.fill") {
+                    showSettings = true
+                }
+                FloatingAction(symbol: "plus") {
+                    editingTarget = Habit(title: "")
+                    showFormSheet = true
+                }
+            } label: { isExpanded in
+                Image(systemName: "ellipsis")
+                    .font(.title3.bold())
+                    .foregroundStyle(.white)
+                    .rotationEffect(.degrees(isExpanded ? 90 : 0))
+                    .frame(width: 50, height: 50)
+                    .background(.orange, in: .circle)
             }
+            .padding()
         }
-        .sheet(isPresented: $showFormSheet, content: {
-            HabitFormSheet(habit: editingTarget) { e, t, d in
-                if let target = editingTarget {
-                    viewModel.updateHabit(target, emoji: e, title: t, details: d, context: context)
-                } else {
-                    viewModel.addHabit(emoji: e, title: t, description: d, context: context)
-                }
-                withAnimation(.spring()) {
-                    showFormSheet = false
-                }
-            }
+        .alert("No Habits", isPresented: $showNoHabitAlert, actions: {
+            Button("OK", role: .cancel) {}
         })
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -101,12 +110,36 @@ struct HabitListView: View {
                         )
                 }
                 .padding(.horizontal)
-
             }
         }
+        .sheet(item: $editingTarget, onDismiss: {
+            editingTarget = nil
+        }) { habit in
+            HabitFormSheet(habit: habit) { emoji, title, details in
+                if viewModel.habits.contains(where: { $0.id == habit.id }) {
+                    viewModel.updateHabit(habit,
+                                          emoji: emoji,
+                                          title: title,
+                                          details: details,
+                                          context: context)
+                } else {
+                    viewModel.addHabit(emoji: emoji,
+                                       title: title,
+                                       description: details,
+                                       context: context)
+                }
+                editingTarget = nil
+            }
+        }
+        .navigationDestination(item: $selectedStatsHabit, destination: { habit in
+            HabitStatisticsView(habit: habit, statsViewModel: HabitStatsViewModel(habit: habit, context: context))
+        })
+        .navigationDestination(isPresented: $showSettings) {
+            SettingsView()
+        }
+        
     }
 }
-
 #Preview {
     HabitListPreviewWrapper(withMockData: true) {
         HabitListView()

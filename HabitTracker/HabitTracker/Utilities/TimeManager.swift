@@ -9,29 +9,30 @@ import Foundation
 
 struct TimeManager {
     
-    static func updateStreaks(for habit: Habit) {
+    static func nextStreak(current: Int?, lastCompleted: Date?, calendar: Calendar = .current) -> (streak: Int, lastCompleted: Date) {
         
-        let today = Calendar.current.startOfDay(for: Date())
-
-        guard let lastDate = habit.lastCompleted else {
-            habit.streak = 1
-            habit.lastCompleted = Date()
-            return
-        }
-
-        let lastCompletedDay = Calendar.current.startOfDay(for: lastDate)
-
-        if today == lastCompletedDay {
-            return
+        let todayStart = calendar.startOfDay(for: Date())
+        
+        guard let last = lastCompleted else {
+            return (1, todayStart)
         }
         
-        if Calendar.current.isDate(today, inSameDayAs: lastCompletedDay.addingTimeInterval(86400)) {
-            habit.streak += 1
+        let lastDayStart = calendar.startOfDay(for: last)
+        
+        if calendar.isDate(lastDayStart, inSameDayAs: todayStart) {
+            return (current ?? 0, lastDayStart)
+        }
+        
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: todayStart)!
+        
+        if calendar.isDate(lastDayStart, inSameDayAs: yesterday) {
+            return ((current ?? 0) + 1, todayStart)
         } else {
-            habit.streak = 1
+            return (1, todayStart)
         }
-        
-        habit.lastCompleted = Date()
     }
     
+    
 }
+
+

@@ -47,9 +47,25 @@ final class HabitListViewModel: ObservableObject {
     
     // UPDATE
     func markHabitAsDone(habit: Habit, context: ModelContext) {
-        TimeManager.updateStreaks(for: habit)
-        let completed = HabitCompletion(habit: habit)
-        context.insert(completed) // -> Theoretically is now saving a habit with a range of history
+        let calendar = Calendar.current
+        let todayStart = calendar.startOfDay(for: Date())
+        
+        if let last = habit.lastCompleted,
+           calendar.isDate(last, inSameDayAs: todayStart) {
+            return
+        }
+        
+        let (newStreak, newDate) = TimeManager.nextStreak(
+            current: habit.streak,
+            lastCompleted: habit.lastCompleted,
+            calendar: calendar
+        )
+        habit.streak = newStreak
+        habit.lastCompleted = newDate
+        
+        let completion = HabitCompletion(habit: habit, date: Date())
+        context.insert(completion)
+        
         do {
             try context.save()
         } catch {
@@ -80,8 +96,8 @@ final class HabitListViewModel: ObservableObject {
     }
     
     // MARK: - Delete
+    
     func deleteHabit(habit: Habit, context: ModelContext) {
-        print("deleteHabit called for: \(habit.title)")
         habit.completions.forEach { context.delete($0) }
         context.delete(habit)
         do {
