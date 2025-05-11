@@ -14,9 +14,13 @@ struct HabitListView: View {
     @Environment(\.modelContext) var context
     
     @State private var showNoHabitAlert = false
-    @State var showFormSheet: Bool = false
     @State var isEditing: Bool = false
-    @State private var editingTarget: Habit? = nil
+    
+    @State private var showCreateSheet: Bool = false
+    @State private var showEditingSheet: Habit? = nil
+    
+    //    MARK: - UX: Track wich card has its FAB open
+    @State private var activeFABfor: Habit.ID? = nil
     
     //    MARK: Navigation
     @State private var showStats = false
@@ -33,34 +37,75 @@ struct HabitListView: View {
             )
             .ignoresSafeArea()
             
-            ScrollView {
-                VStack(alignment: .leading, spacing: 30) {
-                    
-                    Text("Small habits. Big changes")
-                        .font(.title).fontWeight(.bold)
-                        .padding(.top, 30)
-                    
-                    VStack(alignment: .leading) {
-                        TodayView()
+            if viewModel.habits.isEmpty {
+                EmptyHabitView()
+            } else {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 30) {
                         
-                        Text("🔥 1 day streak")
-                            .font(.title3)
-                    }
-                    
-                    LazyVStack(spacing: 15) {
-                        ForEach(viewModel.habits) { habit in
-                            HabitButtonView(
-                                habit: habit,
-                                openEdit: { editingTarget = habit },
-                                openStats: { selectedStatsHabit = $0 },
-                                isEditing: $isEditing
-                            )
+                        Text("Small habits. Big changes")
+                            .foregroundStyle(.white)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(.top, 30)
+                        
+                        VStack(alignment: .leading) {
+                            TodayView()
+
+                        }
+                        
+                        let undone = viewModel.habits.filter { !viewModel.isDoneToday(habit: $0)}
+                        let done = viewModel.habits.filter { viewModel.isDoneToday(habit: $0)}
+                        
+                        Group {
+                            
+                            if !undone.isEmpty {
+                                Text("Pending Habits")
+                                    .foregroundStyle(Color.orange.opacity(0.8))
+                                    .font(.headline)
+                                    .padding(.vertical, 5)
+                                
+                                ForEach(viewModel.habits) { habit in
+                                    HabitButtonView(
+                                        habit: habit,
+                                        openEdit: { showEditingSheet = habit },
+                                        openStats: { selectedStatsHabit = $0 },
+                                        isEditing: $isEditing,
+                                        activeFABfor: $activeFABfor
+                                    )
+                                }
+                            }
+                            
+                            if !done.isEmpty {
+                                Divider()
+                                    .background(Color.white.opacity(0.2))
+                                    .padding(.vertical, 10)
+                                
+                                Text("Completed Today")
+                                    .foregroundStyle(Color.orange.opacity(0.8))
+                                    .font(.headline)
+                                    .padding(.vertical, 5)
+                                
+                                ForEach(done) { habit in
+                                    HabitButtonView(
+                                        habit: habit,
+                                        openEdit: { showEditingSheet = habit },
+                                        openStats: { selectedStatsHabit = $0 },
+                                        isEditing: $isEditing,
+                                        activeFABfor: $activeFABfor
+                                    )
+                                    .opacity(0.6) // Dim completed habits
+                                }
+                            }
+                            
                         }
                     }
+                    .padding()
                 }
-                .padding()
+                //                .disabled(activeFABfor != nil)
             }
-            .onAppear { viewModel.fetchHabits(context: context) }
+            
+            
             
             FloatingButton {
                 FloatingAction(symbol: "chart.bar.fill") {
@@ -76,8 +121,7 @@ struct HabitListView: View {
                     showSettings = true
                 }
                 FloatingAction(symbol: "plus") {
-                    editingTarget = Habit(title: "")
-                    showFormSheet = true
+                    showCreateSheet = true
                 }
             } label: { isExpanded in
                 Image(systemName: "ellipsis")
@@ -89,7 +133,8 @@ struct HabitListView: View {
             }
             .padding()
         }
-        .alert("No Habits", isPresented: $showNoHabitAlert, actions: {
+        .onAppear { viewModel.fetchHabits(context: context) }
+        .alert("No Habits", isPresented: $showNoHabitAlert, actions: { // När triggas denna? om den ens gör det?
             Button("OK", role: .cancel) {}
         })
         .toolbar {
@@ -112,23 +157,21 @@ struct HabitListView: View {
                 .padding(.horizontal)
             }
         }
-        .sheet(item: $editingTarget, onDismiss: {
-            editingTarget = nil
-        }) { habit in
+        .sheet(isPresented: $showCreateSheet) {
+            HabitFormSheet(habit: nil) { emoji, title, details in
+                viewModel.addHabit(emoji: emoji, title: title, description: details, context: context)
+            }
+        }
+        .sheet(item: $showEditingSheet) { habit in
             HabitFormSheet(habit: habit) { emoji, title, details in
-                if viewModel.habits.contains(where: { $0.id == habit.id }) {
-                    viewModel.updateHabit(habit,
-                                          emoji: emoji,
-                                          title: title,
-                                          details: details,
-                                          context: context)
-                } else {
-                    viewModel.addHabit(emoji: emoji,
-                                       title: title,
-                                       description: details,
-                                       context: context)
-                }
-                editingTarget = nil
+                viewModel.updateHabit(
+                    habit,
+                    emoji: emoji,
+                    title: title,
+                    details: details,
+                    context: context
+                )
+                showEditingSheet = nil
             }
         }
         .navigationDestination(item: $selectedStatsHabit, destination: { habit in
@@ -142,6 +185,11 @@ struct HabitListView: View {
 }
 #Preview {
     HabitListPreviewWrapper(withMockData: true) {
+        HabitListView()
+    }
+}
+#Preview("Empty List") {
+    HabitListPreviewWrapper(withMockData: false) {
         HabitListView()
     }
 }

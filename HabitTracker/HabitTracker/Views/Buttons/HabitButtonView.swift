@@ -17,67 +17,70 @@ struct HabitButtonView: View {
     let openEdit: () -> Void
     let openStats: (Habit) -> Void
     @Binding var isEditing: Bool
-    @State private var showEditFAB = false
+    @Binding var activeFABfor: UUID?
+    private var isActive: Bool { activeFABfor == habit.id }
     
     var body: some View {
         
         ZStack {
             cardContent
-                .opacity(showEditFAB ? 0.5 : 1)
-                .animation(.easeInOut, value: showEditFAB)
-                .onTapGesture { viewModel.markHabitAsDone(habit: habit, context: context) }
                 .simultaneousGesture(
                     LongPressGesture(minimumDuration: 0.5)
-                        .onEnded({ _ in
-                            withAnimation(.spring()) { showEditFAB.toggle() }
-                        })
+                        .onChanged { _ in
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                        }
+                        .onEnded { _ in
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                activeFABfor = isActive ? nil : habit.id
+                            }
+                        }
                 )
-                .contentShape(Rectangle())
-            
-            if showEditFAB {
-                
-                HStack(spacing: 20) {
+                .onTapGesture {
+                    guard activeFABfor == nil else { return }
                     
+                    withAnimation(.easeInOut) {
+                        viewModel.markHabitAsDone(habit: habit, context: context)
+                    }
+                }
+            if isActive {
+                Color.black.opacity(0.3)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation { activeFABfor = nil }
+                    }
+                    .zIndex(1)
+            }
+            
+            // MARK: – FAB-knapparna
+            if isActive {
+                HStack(spacing: 20) {
                     Button {
-                        showEditFAB = false
-                        print("Edit Habit tapped")
+                        activeFABfor = nil
                         openEdit()
                     } label: {
-                        Image(systemName: "pencil")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(width: 44, height: 44)
-                            .background(
-                                Circle()
-                                    .fill(.blue)
-                                    .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2))
+                        Image(systemName: "pencil.circle.fill")
+                            .font(.title)
+                            .foregroundStyle(.white, .blue)
                     }
                     
                     Button {
-                        showEditFAB = false
-                        print("Statistics tapped")
+                        activeFABfor = nil
                         openStats(habit)
                     } label: {
                         Image(systemName: "chart.bar.fill")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(width: 44, height: 44)
-                            .background(
-                                Circle()
-                                    .fill(.green)
-                                    .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2))
+                            .font(.title)
+                            .foregroundStyle(.white, .green)
                     }
                 }
-                .transition(.scale.combined(with: .opacity))
-                .zIndex(1)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .zIndex(2)
             }
             
         }
+        .animation(.easeInOut,value: isActive)
         
     }
-    
     private var cardContent: some View {
-        
         
         HStack(spacing: 15) {
             
@@ -104,7 +107,6 @@ struct HabitButtonView: View {
                 Text("\(habit.streak) day streak")
                     .font(.subheadline)
             }
-            .fixedSize(horizontal: false, vertical: false)
             
             Spacer()
             
@@ -118,33 +120,35 @@ struct HabitButtonView: View {
             if isEditing {
                 Button {
                     print("Tapped delete for \(habit.title)")
-                    viewModel.deleteHabit(habit: habit, context: context)
+                    withAnimation(.spring()) {
+                        viewModel.deleteHabit(habit: habit, context: context)
+                    }
                 } label: {
                     Image(systemName: "minus.circle.fill")
                         .font(.system(size: 50))
                         .foregroundStyle(.red)
                         .padding(.trailing)
-                        .opacity(1.0)
                 }
-                
             }
-            
         }
         .padding()
         .background(
             LinearGradient(
                 colors: [Color.blue.opacity(0.4), Color.purple.opacity(0.4)],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        ))
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            ))
         .clipShape(RoundedRectangle(cornerRadius: 10))
-        .shadow(color: .gray, radius: 2)
+        .overlay(content: {
+            RoundedRectangle(cornerRadius: 10).stroke(Color.white.opacity(0.2), lineWidth: 1)
+        })
+        .shadow(radius: 2)
     }
 }
 
-#Preview {
-    HabitButtonView(habit: DeveloperPreview.habits[0], openEdit: {}, openStats: {_ in }, isEditing: .constant(true)).environmentObject(HabitListViewModel())
-}
+//#Preview {
+//    HabitButtonView(habit: DeveloperPreview.habits[0], openEdit: {}, openStats: {_ in }, isEditing: .constant(true), activeFABfor: .constant(.add)).environmentObject(HabitListViewModel())
+//}
 
 final class DeveloperPreview {
     

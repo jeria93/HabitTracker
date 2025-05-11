@@ -37,9 +37,16 @@ final class HabitListViewModel: ObservableObject {
     
     // READ
     func fetchHabits(context: ModelContext) {
-        let descriptor = FetchDescriptor<Habit>(sortBy: [SortDescriptor(\.title)])
+        let descriptor = FetchDescriptor<Habit>(sortBy: [ SortDescriptor(\.title) ])
         do {
-            habits = try context.fetch(descriptor)
+            var all = try context.fetch(descriptor)
+            all.sort {
+                let done0 = isDoneToday(habit: $0)
+                let done1 = isDoneToday(habit: $1)
+                if done0 == done1 { return $0.title < $1.title }
+                return (!done0 && done1)
+            }
+            habits = all
         } catch {
             errorMessage = .fetchFailed
         }

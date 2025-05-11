@@ -12,19 +12,17 @@ struct HabitFormSheet: View {
     
     @Environment(\.dismiss) private var dismiss
     var habit: Habit?
-    
     @State private var emoji: String
     @State private var title: String
     @State private var details: String
     
+    @State private var showValidationWarning: Bool = false
     private let titleLimit = 20
     private let detailsLimit = 70
     
     let onSave: (String, String, String) -> Void
     
-    private var isNew: Bool {
-        habit == nil || title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-    }
+    private var isNew: Bool { habit == nil }
     
     private var isFormValid: Bool {
         !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -83,22 +81,35 @@ struct HabitFormSheet: View {
                             showClearButton: true
                         )
                         
-                        TextFieldWithLimitView(
+                        TextEditorView(
                             text: $details,
-                            characterLimit: detailsLimit,
                             placeholder: "Description",
+                            characterLimit: detailsLimit,
                             flashColor: .white.opacity(0.2),
                             textColor: .white,
+                            borderColor: .white,
                             counterColor: .white.opacity(0.7),
                             clearButtonColor: .white,
-                            showCounter: true,
                             showClearButton: true
                         )
                         
+                        if !isFormValid && showValidationWarning {
+                            Text("All fields are required")
+                                .font(.caption)
+                                .foregroundStyle(.white.opacity(0.8))
+                        }
+                        
                         Button(isNew ? "Save Habit" : "Update Habit") {
-                            print("Save / Habit Tapped")
-                            onSave(emoji, title, details)
-                            dismiss()
+                            
+                            if isFormValid {
+                                print("Save / Habit Tapped")
+                                onSave(emoji, title, details)
+                                dismiss()
+                            } else {
+                                withAnimation {
+                                    showValidationWarning = true
+                                }
+                            }
                         }
                         .font(.headline.bold())
                         .foregroundStyle(.white)
@@ -109,7 +120,7 @@ struct HabitFormSheet: View {
                                 .fill(Color.orange)
                                 .shadow(color: .black.opacity(0.3),radius: 5, y: 5)
                         )
-                        .disabled(!isFormValid)
+                        .disabled(false)
                         
                         Button("Cancel", role: .cancel) {
                             print("Tapped Cancel")
@@ -128,7 +139,6 @@ struct HabitFormSheet: View {
                     .padding(30)
                 }
             }
-            .navigationTitle(isNew ? "New Habit" : "Edit Habit")
             .toolbar(.hidden, for: .navigationBar)
             .hideKeyboardOnTap()
         }

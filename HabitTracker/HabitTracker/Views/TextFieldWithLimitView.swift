@@ -27,11 +27,19 @@ struct TextFieldWithLimitView: View {
         
         ZStack(alignment: .trailing) {
             
-            TextField(placeholder, text: $text)
+            if text.isEmpty {
+                Text(placeholder)
+                    .foregroundStyle(textColor.opacity(0.5))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+            }
+            
+            TextField("", text: $text)
+                .textFieldStyle(.plain)
+                .foregroundColor(textColor)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 8).fill(backgroundFlash))
                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(counterColor.opacity(0.4)))
-                .foregroundColor(textColor)
                 .onChange(of: text) {
                     if characterLimit == 1 {
                         let onlyEmoji = text.onlyEmojis
@@ -114,7 +122,7 @@ private struct TextFieldWithLimitPreviewWrapper: View {
                     showCounter: true,
                     showClearButton: true
                 )
-
+                
                 
                 Text("You wrote: \(sampleText)")
                     .foregroundColor(.white.opacity(0.9))

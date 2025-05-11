@@ -33,7 +33,7 @@ struct EmptyHabitView: View {
                     .foregroundStyle(.white)
                     
                 
-                Text("Start adding habits by tapping the plus button in the top right corner.")
+                Text("Start adding habits by tapping the plus button in the right bottom corner")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.white.opacity(0.9))

@@ -16,6 +16,7 @@
 		034EC9A02DCCEB36009257A5 /* HabitStatisticsView+ChartContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC99F2DCCEB36009257A5 /* HabitStatisticsView+ChartContent.swift */; };
 		034EC9A22DCCEBC3009257A5 /* HabitStatisticsView+AxisContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC9A12DCCEBC3009257A5 /* HabitStatisticsView+AxisContent.swift */; };
 		036980122DCAA55F00B50CB7 /* HabitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036980112DCAA55F00B50CB7 /* HabitError.swift */; };
+		0387B0492DCFEA000083A18F /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0387B0482DCFEA000083A18F /* TextEditorView.swift */; };
 		03903D8D2DCBD77800C409DE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03903D8C2DCBD77800C409DE /* SettingsView.swift */; };
 		0397A4E92DCB672A000F2E3A /* PracticalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397A4E82DCB672A000F2E3A /* PracticalExtensions.swift */; };
 		0397A50B2DCB6D47000F2E3A /* MultiSampleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397A50A2DCB6D47000F2E3A /* MultiSampleButton.swift */; };
@@ -49,6 +50,7 @@
 		034EC9A12DCCEBC3009257A5 /* HabitStatisticsView+AxisContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitStatisticsView+AxisContent.swift"; sourceTree = "<group>"; };
 		036292CD2DC4F5A70079ADF7 /* Time.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Time.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		036980112DCAA55F00B50CB7 /* HabitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitError.swift; sourceTree = "<group>"; };
+		0387B0482DCFEA000083A18F /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		03903D8C2DCBD77800C409DE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0397A4E82DCB672A000F2E3A /* PracticalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticalExtensions.swift; sourceTree = "<group>"; };
 		0397A50A2DCB6D47000F2E3A /* MultiSampleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSampleButton.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				03145E3C2DC6B2F500110779 /* WelcomeView.swift */,
 				0318F4522DCA3AB2004EBCFD /* TextFieldWithLimitView.swift */,
 				03903D8C2DCBD77800C409DE /* SettingsView.swift */,
+				0387B0482DCFEA000083A18F /* TextEditorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				034A1C7B2DCA494200ED55EC /* EmojiValidator.swift in Sources */,
 				03C45E002DC4AD7300CFE931 /* TimeManager.swift in Sources */,
 				03C45E012DC4AD7300CFE931 /* HabitListViewModel.swift in Sources */,
+				0387B0492DCFEA000083A18F /* TextEditorView.swift in Sources */,
 				0318F4532DCA3AB2004EBCFD /* TextFieldWithLimitView.swift in Sources */,
 				03C45E022DC4AD7300CFE931 /* HabitStatsViewModel.swift in Sources */,
 				03C45E032DC4AD7300CFE931 /* EmptyHabitView.swift in Sources */,
