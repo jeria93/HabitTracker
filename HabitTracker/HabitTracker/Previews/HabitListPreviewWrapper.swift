@@ -8,12 +8,20 @@
 import SwiftUI
 import SwiftData
 
+
+/// Wrapper for SwiftUI previews that:
+/// 1. Instantiates a HabitListViewModel
+/// 2. Provides an in-memory SwiftData ModelContainer (mock or empty)
+/// 3. Embeds your content in a NavigationStack
+/// 4. Automatically fetches habits on appear
 struct HabitListPreviewWrapper<Content: View>: View {
     
     @StateObject private var viewModel = HabitListViewModel()
     private let content: Content
     private let container: ModelContainer
     
+    /// - Parameter withMockData: if true, seeds the container with sample habits
+    /// - Parameter content: the preview view to display
     init(withMockData: Bool = true, @ViewBuilder content: () -> Content) {
         
         self.container = withMockData ? PreviewDataProvider.filled : PreviewDataProvider.empty

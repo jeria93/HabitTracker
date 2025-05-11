@@ -10,12 +10,15 @@ import Charts
 
 struct HabitListView: View {
     
+    // MARK: - Enviroment
     @EnvironmentObject private var viewModel: HabitListViewModel
     @Environment(\.modelContext) var context
     
+    // MARK: - Alerts and Edit
     @State private var showNoHabitAlert = false
     @State var isEditing: Bool = false
     
+    // MARK: - Creating and Editing
     @State private var showCreateSheet: Bool = false
     @State private var showEditingSheet: Habit? = nil
     
@@ -23,7 +26,6 @@ struct HabitListView: View {
     @State private var activeFABfor: Habit.ID? = nil
     
     //    MARK: Navigation
-    @State private var showStats = false
     @State private var showSettings = false
     @State private var selectedStatsHabit: Habit? = nil
     
@@ -94,7 +96,7 @@ struct HabitListView: View {
                                         isEditing: $isEditing,
                                         activeFABfor: $activeFABfor
                                     )
-                                    .opacity(0.6) // Dim completed habits
+                                    .opacity(0.6)
                                 }
                             }
                             
@@ -102,7 +104,6 @@ struct HabitListView: View {
                     }
                     .padding()
                 }
-                //                .disabled(activeFABfor != nil)
             }
             
             
@@ -134,9 +135,6 @@ struct HabitListView: View {
             .padding()
         }
         .onAppear { viewModel.fetchHabits(context: context) }
-        .alert("No Habits", isPresented: $showNoHabitAlert, actions: { // När triggas denna? om den ens gör det?
-            Button("OK", role: .cancel) {}
-        })
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {

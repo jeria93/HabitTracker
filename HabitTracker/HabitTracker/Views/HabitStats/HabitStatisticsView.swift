@@ -8,6 +8,10 @@ import SwiftUI
 import Charts
 import SwiftData
 
+/// A view showing bar-chart statistics for a single Habit.
+///
+/// - Lets user switch between daily/weekly/monthly periods.
+/// - Displays summary view, empty state, or full Chart.
 struct HabitStatisticsView: View {
     
     let habit: Habit
@@ -21,9 +25,13 @@ struct HabitStatisticsView: View {
         case .monthly: return statsViewModel.monthly
         }
     }
-    
+    /// Maximum y-axis value (for proper scale)
     var maxCount: Int { (selectedData.map(\.count).max() ?? 0) + 1 }
+    
+    /// Data points with zero completions
     var zeroPoints: [StreakPoints] { selectedData.filter { $0.count == 0 } }
+    
+    /// Data points with >0 completions
     var donePoints: [StreakPoints] { selectedData.filter { $0.count > 0 } }
     
     var averagePerPeriod: Double {
@@ -120,13 +128,13 @@ private struct EmptyHabitStatisticsView: View {
     private let previewHabit: Habit
     
     init() {
-
+        
         let previewContainer = try! ModelContainer(for: Habit.self, HabitCompletion.self)
         let previewContext = previewContainer.mainContext
         
         let habit = Habit(title: "No Data")
         habit.emoji = "❓"
-
+        
         let viewModel = HabitStatsViewModel(habit: habit, context: previewContext)
         viewModel.daily = []
         viewModel.weekly = []

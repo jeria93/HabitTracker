@@ -8,13 +8,13 @@
 import Foundation
 import SwiftData
 
+
+/// CRUD operations via SwiftData
+/// fetchhabits-> custom sort(unfinished first)
 @MainActor
 final class HabitListViewModel: ObservableObject {
     
-    
-    @Published var showAddHabitSheet: Bool = false
     @Published var isEditing: Bool = false
-    
     @Published var habits: [Habit] = []
     @Published var errorMessage: HabitError?
     @Published var name: String = ""
@@ -89,16 +89,6 @@ final class HabitListViewModel: ObservableObject {
             fetchHabits(context: context)
         } catch {
             errorMessage = .updateFailed(title)
-        }
-    }
-    
-    func renameHabit(habit: Habit, to newName: String, context: ModelContext) {
-        habit.title = newName
-        do {
-            try context.save()
-            fetchHabits(context: context)
-        } catch {
-            errorMessage = .updateFailed(newName)
         }
     }
     

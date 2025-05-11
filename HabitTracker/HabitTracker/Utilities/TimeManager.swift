@@ -9,6 +9,7 @@ import Foundation
 
 struct TimeManager {
     
+    /// Returns the next streak count and normalized "last completed" date
     static func nextStreak(current: Int?, lastCompleted: Date?, calendar: Calendar = .current) -> (streak: Int, lastCompleted: Date) {
         
         let todayStart = calendar.startOfDay(for: Date())

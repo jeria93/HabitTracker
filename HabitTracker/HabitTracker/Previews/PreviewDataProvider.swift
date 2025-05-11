@@ -9,6 +9,11 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+
+/// Supplies two in-memory ModelContainers for Xcode previews:
+/// `filled` — preloaded with mock Habit data
+/// `.empty`  — no data, for testing empty states
+
 @MainActor
 final class PreviewDataProvider {
     

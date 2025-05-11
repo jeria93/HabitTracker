@@ -8,26 +8,35 @@
 import SwiftUI
 import SwiftData
 
+/// A modal sheet for creating or editing a Habit.
+///
+/// - Presents fields for emoji, title, and description, each with character limits.
+/// - Validates that the title is non‐empty before saving.
+/// - Calls `onSave` closure with the entered values when saving.
+/// - Dismisses itself on successful save or “Cancel”.
 struct HabitFormSheet: View {
     
     @Environment(\.dismiss) private var dismiss
     var habit: Habit?
+    let onSave: (String, String, String) -> Void
+    
     @State private var emoji: String
     @State private var title: String
     @State private var details: String
-    
     @State private var showValidationWarning: Bool = false
+    
     private let titleLimit = 20
     private let detailsLimit = 70
-    
-    let onSave: (String, String, String) -> Void
-    
     private var isNew: Bool { habit == nil }
     
     private var isFormValid: Bool {
         !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
+    /// Initializes the form sheet.
+    /// - Parameters:
+    ///   - habit: the Habit to edit, or `nil` to create a new one
+    ///   - onSave: callback invoked with the entered emoji, title, and details
     init(habit: Habit? = nil,
          onSave: @escaping (String,String,String) -> Void = {_,_,_ in}
     ) {
@@ -144,6 +153,7 @@ struct HabitFormSheet: View {
         }
     }
     
+    /// Returns a color for the counter: red when at limit, otherwise semi‐transparent white
     private func counterColor(_ used: Int, _ limit: Int) -> Color {
         used == limit ? .red : .white.opacity(0.7)
     }
